@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CourseController!{% endblock %}
+
+{% block body %}
+<table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>estado</th>
+                
+                
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for Course in ListCourse %}
+            <tr>
+                <td>{{ Course.id }}</td>
+                <td>{{ Course.nombre}}</td>
+                <td>{{ Course.estado }}</td>
+                
+                
+                <td>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+     <a href="{{ path('app_registration') }}">Registrar nuevo</a>
+{% endblock %}
+
