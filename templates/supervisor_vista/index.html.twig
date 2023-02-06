@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supervisor Vista{% endblock %}
+
+{% block body %}
+<h1>Usuarios registrados</h1>
+    {% if listUser and listUser|length >0 %}
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                [% for user in listUser %]
+                    <tr scope="row">
+                        <th>{{user.nombre}}</th>
+                        <th>{{user.apellido}}</th>
+                        <th>{{user.correo}}</th>
+                        <th>{{user.tipo}}</th>
+                    </tr>
+                [% endfor %]
+            </tbody>
+        </table>
+    {% else %}
+        <p style=color:red> <strong>No se encuentran registrados usuarios</strong></p>
+    {% endif %}
+
+    <a href ="{{path('app_registration_user')}}" class="btn btn-success" role_"button"> Añadir</a>
+    <a href ="{{'path(app_logout)'}}" class="btn btn-success" role_"button"> Cerrar Sesión</a>
+{% endblock %}
+
