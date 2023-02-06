@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Capacitador!{% endblock %}
+
+{% block body %}
+<di>
+ <h1>Registro de Cursos><h1>
+ {{form_start(formulario)}}
+ {{form_widget(formulario)}}
+ {{form_endt(formulario)}}
+<a href = "{{path('app_capacitador_dahs_board')}}" class="btn btn-primary" role="button">Cancelar</a>
+<div>
+{% endblock %}
+
