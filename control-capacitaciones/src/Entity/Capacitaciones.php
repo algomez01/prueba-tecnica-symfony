@@ -85,4 +85,16 @@ class Capacitaciones
 
         return $this;
     }
+
+    public function getId(): ?int
+    {
+        return $this->user_id;
+    }
+
+    public function seId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }

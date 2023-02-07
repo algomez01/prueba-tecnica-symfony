@@ -20,11 +20,11 @@ class RegisterCapacitacionesType extends AbstractType
             #->add('user_id')
         ;
         
-        if($options['accion'] == 'editCapacitaciones')
+        if($options['action'] == 'editCapacitaciones')
         {
             $builder->add('estado', ChoiceType::class,array(
                          'choices'=>array(
-                         'En planificación'=> 'EnPlanificación',
+                         'En planificación'=> 'EnPlanificacion',
                          'Activo'=>'Activo',
                          'Inactivo'=>'Inactivo',
                         )
@@ -40,7 +40,6 @@ class RegisterCapacitacionesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Capacitaciones::class,
-            'action' => 'crearCapacitaciones',
         ]);
     }
 }

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Estudiante!{% endblock %}
+
+{% block body %}
+<body style="background-color:#C8C5CA;" >
+
+    <center>
+    <h1>HOLA ESTUDIANTES✅</h1>
+    </center>
+     <center>
+    <div class="container bn-secondary">
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for capacitaciones in capacitaciones %}
+            <tr>
+                <td>{{ capacitaciones.id }}</td>
+                <td>{{ capacitaciones.titulo }}</td>
+                <td>{{ capacitaciones.descripcion }}</td>
+                <td>{{ capacitaciones.estado }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                 <p><strong><b>No existen Cursos Registrados</b></strong></p>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+     <a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
+{% endblock %}

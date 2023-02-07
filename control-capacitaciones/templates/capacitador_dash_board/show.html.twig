@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Capacitaciones{% endblock %}
+
+{% block body %}
+<body style="background-color:#C8C5CA;" >
+
+    <center>
+    <h1><b>HOLA CAPACITADORES✅</b></h1>
+    </center>
+    <div class="container bg-white">
+        <h1><b>Cursos:</b></h1>
+     <center>
+    <div class="container -secondary">
+    <table class="table table-secondary table-bordered" >
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ capacitaciones.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ capacitaciones.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ capacitaciones.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ capacitaciones.estado }}</td>
+            </tr>
+            <tr>
+                <th>User_id</th>
+                <td>{{ capacitaciones.userId }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+    <a href = "{{path('app_capacitador_dash_board_index')}}" class="btn btn-info" role="button">Regresar</a>
+    <a href = "{{path('app_capacitador_dash_board_edit',{'id': capacitaciones.id})}}" class="btn btn-primary" role="button">Editar</a>
+    {{ include('capacitador_dash_board/_delete_form.html.twig') }}
+    </table>
+        </div>
+    </div>
+{% endblock %}

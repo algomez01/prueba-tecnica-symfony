@@ -61,10 +61,10 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         }
         elseif($this->authorizationChecker->isGranted("ROLE_CAPACITADOR"))
         {
-            return new RedirectResponse($this->urlGenerator->generate('app_capacitador_dahs_board'));
+            return new RedirectResponse($this->urlGenerator->generate('app_capacitador_dash_board_index'));
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        return new RedirectResponse($this->urlGenerator->generate('app_estudiante_dash_board'));
         
     }
 

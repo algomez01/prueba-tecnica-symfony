@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Capacitaciones index{% endblock %}
+
+{% block body %}
+<body style="background-color:#C8C5CA;" >
+
+    <center>
+    <h1>HOLA CAPACITADORES✅</h1>
+    </center>
+     <center>
+    <div class="container bn-secondary">
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>User_id</th>
+                <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for capacitaciones in capacitaciones %}
+            <tr>
+                <td>{{ capacitaciones.id }}</td>
+                <td>{{ capacitaciones.titulo }}</td>
+                <td>{{ capacitaciones.descripcion }}</td>
+                <td>{{ capacitaciones.estado }}</td>
+                <td>{{ capacitaciones.userId }}</td>
+                <td>
+                  <a href="{{ path('app_capacitador_dash_board_show', {'id': capacitaciones.id}) }}"class="btn btn-info" role="button">Ver</a>
+                  <a href = "{{path('app_capacitador_dash_board_edit',{'id': capacitaciones.id})}}" class="btn btn-primary" role="button">Editar</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                 <p><strong><b>No existen Cursos Registrados</b></strong></p>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+     <a href = "{{path('app_capacitador_dash_board_new')}}" class="btn btn-primary" role="button">Agregar Cursos</a>
+     <a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
+{% endblock %}

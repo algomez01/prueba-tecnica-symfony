@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Capacitaciones{% endblock %}
+
+{% block body %}
+<body style="background-color:#C8C5CA;" >
+
+    <center>
+    <h1>HOLA CAPACITADORES✅</h1>
+    </center>
+     <center>
+       <h2>Agregar Cursos</h2>
+    <div class="container bg-secondary">
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+    <div class="mb-3">
+      <label for="staticEmail" class="col-sm-2 col-form-label">
+<table>
+    {{ include('capacitador_dash_board/_form.html.twig') }}
+<div class="container">
+<br>
+    <a href = "{{path('app_capacitador_dash_board_index')}}" class="btn btn-info" role="button">Regresar</a>
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_capacitador_dash_board_delete', {'id': capacitaciones.id}) }}" onsubmit="return confirm('¡Estás seguro de que quieres eliminar');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ capacitaciones.id) }}">
+    <button class="btn btn-danger">Borrar</button>
+</form>
