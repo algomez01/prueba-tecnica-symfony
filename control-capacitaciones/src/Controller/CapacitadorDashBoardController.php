@@ -19,23 +19,31 @@ class CapacitadorDashBoardController extends AbstractController
     /**
      * @Route("/", name="app_capacitador_dash_board_index", methods={"GET"})
      */
-    public function index(CapacitacionesRepository $capacitacionesRepository): Response
+    public function index(Request $request, CapacitacionesRepository $capacitacionesRepository, UserRepository $userRepo): Response
     {
+        $user = $request->getSession()->get('user');
+        $userObj = $userRepo->findOneBy(["email"=>$user]);
+
         return $this->render('capacitador_dash_board/index.html.twig', [
-            'capacitaciones' => $capacitacionesRepository->findAll(),
+            'capacitaciones' => $capacitacionesRepository->findBy(["user_id" => $userObj->getId()]),
         ]);
     }
 
     /**
      * @Route("/new", name="app_capacitador_dash_board_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, CapacitacionesRepository $capacitacionesRepository): Response
+    public function new(Request $request, CapacitacionesRepository $capacitacionesRepository, UserRepository $userRepo): Response
     {
         $capacitaciones = new Capacitaciones();
+        $user = $request->getSession()->get('user');
+        $userObj = $userRepo->findOneBy(["email"=>$user]);
+
         $form = $this->createForm(CapacitacionesType::class, $capacitaciones);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $capacitaciones->setUserId($userObj->getId());
+            $capacitaciones->setEstado("EnPlanificacion");
             $capacitacionesRepository->add($capacitaciones, true);
 
             return $this->redirectToRoute('app_capacitador_dash_board_index', [], Response::HTTP_SEE_OTHER);
@@ -64,11 +72,10 @@ class CapacitadorDashBoardController extends AbstractController
     {
         $mensaje="";
         $estado="";
-        $usuario= $request->getUser();
-        $usuario="Example@mail.com";
+        $usuario = $request->getSession()->get('user');
         $objUsuario = $userRepo->findOneBy(["email"=>$usuario]);
 
-        $form = $this->createForm(CapacitacionesType::class, $capacitaciones);
+        $form = $this->createForm(CapacitacionesType::class, $capacitaciones, ["accion"=>"editCapacitacion"]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -76,11 +83,11 @@ class CapacitadorDashBoardController extends AbstractController
             $capacitaciones = $form->getData();
            // $capacitacionesRepository->add($capacitaciones, true);
 
-           if ($objUsuario) 
+           if ($capacitaciones->getEstado() == "Activo") 
             {
-                $totalCursos = $capacitacionesRepository->totalByUserIdAndEstado($objUsuario->getId(),"Activo");
+                $totalCursos = $capacitacionesRepository->findBy(["user_id"=>$objUsuario->getId(), "estado"=>"Activo"]);
 
-                if($totalCursos != null && $totalCursos >= 2)
+                if($totalCursos != null && count($totalCursos)>=3)
                 {
                     $mensaje = "Error Solamente puede tener 3 cursos Activos";
                     $estado = "Error";
@@ -88,17 +95,17 @@ class CapacitadorDashBoardController extends AbstractController
             }
             elseif($capacitaciones->getEstado() == "EnPlanificacion")
             {
-                $mensaje = "Error, no puede cambiar el estado";
+                $mensaje = "Error, no puede cambiar el estado EnPlanificacion";
                 $estado = "Error";
             }
 
-            if($estado != "error")
+            if($estado != "Error")
             {
                 $mensaje = "Curso Actualizado Correctamente";
                 $estado = "Guardado";
                 $capacitacionesRepository->add($capacitaciones,true);
             }
-            $this->addFlash($estado, $mensaje);
+            $this->addFlash("notice", $mensaje);
             return $this->redirectToRoute('app_capacitador_dash_board_index', [], Response::HTTP_SEE_OTHER);
         }
 

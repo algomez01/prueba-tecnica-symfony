@@ -17,7 +17,7 @@
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Estado</th>
-                <th>User_id</th>
+                <!--<th>User_id</th>-->
                 <th>OPCIONES</th>
             </tr>
         </thead>
@@ -28,7 +28,7 @@
                 <td>{{ capacitaciones.titulo }}</td>
                 <td>{{ capacitaciones.descripcion }}</td>
                 <td>{{ capacitaciones.estado }}</td>
-                <td>{{ capacitaciones.userId }}</td>
+                <!--<td>{{ capacitaciones.userId }}</td>-->
                 <td>
                   <a href="{{ path('app_capacitador_dash_board_show', {'id': capacitaciones.id}) }}"class="btn btn-info" role="button">Ver</a>
                   <a href = "{{path('app_capacitador_dash_board_edit',{'id': capacitaciones.id})}}" class="btn btn-primary" role="button">Editar</a>

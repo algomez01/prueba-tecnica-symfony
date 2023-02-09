@@ -54,6 +54,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        $request->getSession()->set('user',$request->getSession()->get(Security::LAST_USERNAME));
+
         // For example:
         if($this->authorizationChecker->isGranted("ROLE_ADMIN"))
         {

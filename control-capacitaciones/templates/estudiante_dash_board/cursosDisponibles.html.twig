@@ -27,19 +27,18 @@
                 <td>{{ curso.titulo }}</td>
                 <td>{{ curso.descripcion }}</td>
                 <td>{{ curso.nombres }} {{ curso.apellidos }}</td>
-                <td><a href = "{{path('app_estudiante_dash_board_save',{'id':curso.id, 'accion':'delete'})}}" class="btn btn-danger" role="button">Desuscribirse</a></td>
+                <td><a href = "{{path('app_estudiante_dash_board_save',{'id':curso.id, 'accion':'add'})}}" class="btn btn-success" role="button">Suscribirse</a></td>
             </tr>
         {% else %}
             <tr>
                 <td colspan="5">
-                    <strong><b>No existen Cursos En los que te encuentras Suscrito</b></strong>
+                    <strong><b>No existen Cursos Activos para suscribirse</b></strong>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href = "{{path('app_estudiante_dash_board_view_disponibles')}}" class="btn btn-success" role="button">Ver Cursos</a>
-    <a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
+    <a href = "{{path('app_estudiante_dash_board')}}" class="btn btn-danger" role="button">Regresar</a>
     
 {% endblock %}
