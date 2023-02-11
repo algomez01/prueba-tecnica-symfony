@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Registrar Curso{% endblock %}
+
+{% block body %}
+<h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Curso </h1>
+ 
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>Fecha</th>
+                <th>Tipo Cita</th>
+                <th>Duracion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in ListCitas %}
+            <tr class="table-primary">
+                <td>{{ cita.Fecha|date('m/d/Y') }}</td>
+                <td>{{ cita.TipoCita }}</td>
+                <td>{{ cita.Duracion}}</td>
+                <td>
+                    
+                    
+                    <a href="{{ path('app_cita_edit',   {'id': cita.id}) }}">Editar</a>
+                    <a href="{{ path('app_cita_delete', {'id': cita.id}) }}">Eliminar</a>
+                    
+                </td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cita_nuevo') }}">Registrar nuevo</a>
+    
+{% endblock %}

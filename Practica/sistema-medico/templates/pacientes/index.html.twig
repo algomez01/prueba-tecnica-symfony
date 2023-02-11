@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paciente{% endblock %}
+
+{% block body %}
+<body style="background-color: rgb(254 226 226);"  >
+
+    <center>
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Paciente</h1>
+    </center>
+     <center>
+    <div class="container bn-secondary">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                
+                <th>Doctor</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                
+                <td>{{ cita.Fecha }}</td>
+                <td>{{ cita.TipoCita }}</td>
+
+                <td>{{ cita.Nombres }} </td>
+                <td><a href = "{{path('app_paciente_dash_board_save',{'id':cita.id, 'accion':'delete'})}}" class="btn btn-danger" role="button">Anular Cita</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">
+                    <strong><b>No existen Citas En los que te encuentras Suscrito</b></strong>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href = "{{path('app_paciente_dash_board_view_disponibles')}}" class="btn btn-success" role="button">Ver Citas</a>
+    <a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
+    
+{% endblock %}
