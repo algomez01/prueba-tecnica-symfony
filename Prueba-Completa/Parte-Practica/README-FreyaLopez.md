@@ -4,9 +4,12 @@
 # INFORMACION DEL PROYECTO:
 
 ## Nombre del proyecto:
+Sistema de registro de las citas medicas diarias
 
 ## Descripcion del proyecto:
-
+Un sistema que registra citas medicas diariamente, en el cual los pacientes registran sus citas medicas.
+En donde los medicos asignaran que tipo de cita sera y el tiempo en el que se realizara.
+Se generara facturas de las citas
 
 
 # Requisitos Previos
