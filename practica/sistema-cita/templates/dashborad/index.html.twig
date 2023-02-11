@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Dasboard Controller!{% endblock %}
+
+{% block body %}
+<h1>Dashboard </h1>
+<i class="fa-solid fa-user"></i>
+
+    {% if listUsers and listUsers|length > 0 %} 
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="table-active">
+                <td>id</td>
+                <td>nombre</td>
+                 <td>apellidos</td>
+                <td>email</td>
+                <td>tipo</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in listUsers %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nombres }}</td>
+                <td>{{ user.apellidos}}</td>
+                <td>{{ user.email }}</td>
+                <td>{{user.tipoUsuario}}</td>
+                
+                
+                
+            </tr>
+        {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7">no consta con registros</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_registration_user') }}"role="button">añadir</a>
+                    
+    <a href="{{ path('app_logout') }}"role="button">Cerrar sesión </a>
+{% endblock %}

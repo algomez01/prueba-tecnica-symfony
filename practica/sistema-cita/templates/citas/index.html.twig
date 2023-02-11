@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas Dashboard{% endblock %}
+
+{% block body %}
+<h1>Registros de Citas </h1>
+ 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>fecha</th>
+                <th>hora</th>
+                <th>duracion</th>
+                <th>userid</th>
+                <th>TipoCita</th>
+                
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for citas in ListCitas %}
+            <tr>
+                <td class="table-light">{{ citas.id }}</td>
+                <td class="table-light">{{ citas.fecha|date('m/d/y')}}</td>
+                <td class="table-light">{{ citas.hora}}</td>
+                <td class="table-light">{{ citas.duracion }}</td>
+                <td class="table-light">{{ citas.userid}}</td>
+                <td class="table-light">{{ citas.TipoCita}}</td>
+                
+                <td>
+                    
+                    
+                    <a href="{{ path('app_citas_edit',   {'id': citas.id}) }}">Editar</a>
+                    <a href="{{ path('app_cita_delete', {'id': citas.id}) }}">Eliminar</a>
+                   
+                    
+                </td>
+               
+              {% for message in app.flashes('notice') %}
+                <div class="alert alert-info" role="alert">
+                    {{ message }}
+                </div>
+             {% endfor %}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+    <a href="{{ path('app_citas') }}">Registrar nuevo</a>
+     <a href="{{ path('app_logout') }}"role="button">Cerrar sesión </a>
+{% endblock %}
