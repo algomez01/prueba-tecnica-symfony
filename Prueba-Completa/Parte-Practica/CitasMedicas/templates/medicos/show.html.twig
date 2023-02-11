@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medicos{% endblock %}
+
+{% block body %}
+    <h1>Medicos</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ medico.id }}</td>
+            </tr>
+            <tr>
+                <th>User_id</th>
+                <td>{{ medico.userId }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ medico.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Apellidos</th>
+                <td>{{ medico.apellidos }}</td>
+            </tr>
+            <tr>
+                <th>Valor</th>
+                <td>{{ medico.valor }}</td>
+            </tr>
+            <tr>
+                <th>Cita_id</th>
+                <td>{{ medico.citaId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_medicos_index') }}">back to list</a>
+
+    <a href="{{ path('app_medicos_edit', {'id': medico.id}) }}">edit</a>
+
+    {{ include('medicos/_delete_form.html.twig') }}
+{% endblock %}

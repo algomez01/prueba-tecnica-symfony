@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas{% endblock %}
+
+{% block body %}
+<body style="background-color:#C8C5CA;" >
+
+    <center>
+    <h1><b>HOLA ✅</b></h1>
+    </center>
+    <div class="container bg-white">
+        <h1><b>CITAS:</b></h1>
+     <center>
+    <div class="container -secondary">
+    <table class="table table-secondary table-bordered" >
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cita.id }}</td>
+            </tr>
+              <!--<tr>
+                <th>Paciente_id</th>
+                <td>{{ cita.pacienteId }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ cita.fecha ? cita.fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Hora</th>
+                <td>{{ cita.hora ? cita.hora|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Tipo de Cita</th>
+                <td>{{ cita.tipocita }}</td>
+            </tr></tr>-->
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_citas_index') }}"class="btn btn-info" role="button">Regresar</a>
+
+    <a href="{{ path('app_citas_edit', {'id': cita.id}) }}"class="btn btn-primary" role="button">Editar</a>
+
+    {{ include('citas/_delete_form.html.twig') }}
+{% endblock %}

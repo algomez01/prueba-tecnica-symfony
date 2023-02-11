@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medicos index{% endblock %}
+
+{% block body %}
+    <h1>Medicos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Valor</th>
+                <th>Identificador de Cita:</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for medico in medicos %}
+            <tr>
+                <td>{{ medico.id }}</td>        
+                <td>{{ medico.nombre }}</td>
+                <td>{{ medico.apellidos }}</td>
+                <td>{{ medico.valor }}</td>
+                <td>{{ medico.citaId }}</td>
+                <td>
+                    <a href="{{ path('app_medicos_show', {'id': medico.id}) }}">show</a>
+                    <a href="{{ path('app_medicos_edit', {'id': medico.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_medicos_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Cursos{% endblock %}
+
+{% block body %}
+<body style="background-color:#C8C5CA;" >
+<center>
+    <h1>Editar Citas ✍️</h1>
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+    <div class="mb-3">
+      <label for="staticEmail" class="col-sm-2 col-form-label">
+<table>
+
+    {{ include('citas/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_citas_index') }}"lass="btn btn-info" role="button">Regresar</a>
+
+{% endblock %}

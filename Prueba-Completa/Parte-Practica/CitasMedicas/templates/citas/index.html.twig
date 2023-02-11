@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas index{% endblock %}
+
+{% block body %}
+ <body style="background-color:#C8C5CA;" >
+
+    <center>
+    <h1>CITAS✅</h1>
+    </center>
+     <center>
+    <div class="container bn-secondary">
+    <table class="table table-success table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Tipo de cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fecha ? cita.fecha|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.hora ? cita.hora|date('H:i:s') : '' }}</td>
+                <td>{{ cita.tipocita }}</td>
+                <td>
+                    <a href="{{ path('app_citas_show', {'id': cita.id}) }}"class="btn btn-success" role="button">Ver</a>
+                    <a href="{{ path('app_citas_edit', {'id': cita.id}) }}"class="btn btn-primary" role="button">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No existen citas creadas</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_citas_new') }}"class="btn btn-primary" role="button">Crear Nueva Cita</a>
+    <a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
+{% endblock %}
