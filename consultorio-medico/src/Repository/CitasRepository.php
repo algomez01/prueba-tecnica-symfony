@@ -69,6 +69,7 @@ class CitasRepository extends ServiceEntityRepository
         citas.motivo,
         citas.estado,
         tipoCita.descripcion descripcionTipoCita,
+        tipoCita.costo valorCita,
         userMedico.nombres nombre_medico,
         userMedico.apellidos apellido_medico,
         userPaciente.nombres paci_nombres,
@@ -97,7 +98,6 @@ class CitasRepository extends ServiceEntityRepository
         return $query->getResult();
         ;
     }
-
 
 //    public function findOneBySomeField($value): ?Citas
 //    {

@@ -61,7 +61,7 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
         if($this->auth->isGranted(User::ROLE_ADMIN)){
             return new RedirectResponse($this->urlGenerator->generate('app_dashboard_admin'));
         }elseif($this->auth->isGranted(User::ROLE_CAJERO )){
-            return new RedirectResponse($this->urlGenerator->generate('app_dashboard_cajero'));
+            return new RedirectResponse($this->urlGenerator->generate('app_cajero_dashboard'));
         }elseif($this->auth->isGranted(User::ROLE_MEDICO)){
             return new RedirectResponse($this->urlGenerator->generate('app_medico_dashboard_index'));
         }elseif($this->auth->isGranted(User::ROLE_PACIENTE)){

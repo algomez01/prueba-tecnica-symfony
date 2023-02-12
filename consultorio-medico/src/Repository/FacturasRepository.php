@@ -39,6 +39,34 @@ class FacturasRepository extends ServiceEntityRepository
         }
     }
 
+    public function getFacturasUsuario($idUser): ?array
+    {
+        //se hace un left join para obtner las citas aún cuando no tengan registrado un medicoId
+        $strSql = "SELECT fact.id,
+        fact.fe_creacion fecha_factura,
+        fact.total,
+        cita.fe_creacion fecha_cita,
+        tipoCita.descripcion descripcionTipoCita,
+        CONCAT(CONCAT(userMedico.nombres,' '),userMedico.apellidos) nombres_medico,
+        CONCAT(CONCAT(userPaciente.nombres,' '),userPaciente.apellidos) nombres_paciente
+                    FROM App\Entity\Facturas fact
+                    JOIN App\Entity\User userCajero
+                    WITH fact.cajeroId = userCajero.id
+                    JOIN App\Entity\Citas cita
+                    WITH fact.citaId = cita.id
+                    JOIN App\Entity\TiposCitas tipoCita
+                    WITH cita.tipoCitaId = tipoCita.id
+                    JOIN App\Entity\User userPaciente
+                    WITH cita.pacienteId = userPaciente.id
+                    JOIN App\Entity\User userMedico
+                    WITH cita.medicoId = userMedico.id
+                    WHERE fact.cajeroId = :cajero";
+        return $this->_em->createQuery($strSql)
+            ->setParameter('cajero',$idUser)
+            ->getResult();
+        ;
+    }
+
 //    /**
 //     * @return Facturas[] Returns an array of Facturas objects
 //     */

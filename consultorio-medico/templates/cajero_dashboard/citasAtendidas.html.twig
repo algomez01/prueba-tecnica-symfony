@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Citas atendidas{% endblock %}
+{% block title %}Facturas - Cajero{% endblock %}
 
 {% block body %}
-    <h1>Historial de Citas Atendidas</h1>
+    <h1>Citas por Facturar</h1>
 
 <!--No se permite editar las citas ya atendidas por el médico-->
     <table class="table">
@@ -11,10 +11,11 @@
             <tr>
                 <th>Id</th>
                 <th>Fe_creacion</th>
-                <th>Motivo</th>
-                <th>Estado</th>
-                <th>Tipo Cita</th>
                 <th>Paciente</th>
+                <th>Médico</th>
+                <th>Tipo de Cita</th>
+                <th>Costo Cita</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +23,13 @@
             <tr>
                 <td>{{ cita.id }}</td>
                 <td>{{ cita.fe_creacion ? cita.fe_creacion|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ cita.motivo }}</td>
-                <td>{{ cita.estado }}</td>
-                <td>{{ cita.descripcionTipoCita }}</td>
                 <td>{{ cita.paci_apellidos }} {{cita.paci_nombres}}</td>
+                <td>{{ cita.nombre_medico }} {{cita.apellido_medico}}</td>
+                <td>{{ cita.descripcionTipoCita}}</td>
+                <td>$ {{ cita.valorCita}}</td>
+                <td>
+                  <a href="{{path('app_cajero_dashboard_facturar',{'id':cita.id})}}">Generar Factura</a>
+                </td>
             </tr>
         {% else %}
             <tr>
@@ -35,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_medico_dashboard_pendientes') }}">Atender citas</a>
+    <a href="{{ path('app_cajero_dashboard') }}">Regresar</a>
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Factura - Cajeros{% endblock %}
+
+{% block body %}
+    <h1>Historial de Facturas Generadas</h1>
+
+    <!--No se permite editar las facturas cerradas por el cajero-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha Factura</th>
+                <th>Total Factura</th>
+                <th>Fecha Cita</th>
+                <th>Tipo Cita</th>
+                <th>Paciente</th>
+                <th>Médico</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for factura in facturas %}
+            <tr>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.fecha_factura ? factura  .fecha_factura|date('Y-m-d H:i:s') : '' }}</td>
+                <td>$ {{ factura.total }}</td>
+                <td>{{ factura.fecha_cita ? factura.fecha_cita|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ factura.descripcionTipoCita }}</td>
+                <td>{{ factura.nombres_paciente }}</td>
+                <td>{{ factura.nombres_medico }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cajero_dashboard_atendidas') }}">Facturar</a>
+{% endblock %}
