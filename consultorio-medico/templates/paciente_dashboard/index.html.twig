@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Citas index{% endblock %}
+{% block title %}Citas Paciente{% endblock %}
 
 {% block body %}
-    <h1>Citas index</h1>
+    <h1>Historial de Citas Pacientes</h1>
 
     <table class="table">
         <thead>
@@ -14,7 +14,7 @@
                 <th>Estado</th>
                 <th>Tipo Cita</th>
                 <th>Medico</th>
-                <th>actions</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
                 <td>{{ cita.apellido_medico }} {{ cita.nombre_medico }}</td>
                 <td>
                     {% if cita.estado == 'Pendiente' %} <!--Solo si esta pendiente se puede editar el motivo -->
-                    <a href="{{ path('app_paciente_dashboard_edit', {'id': cita.id}) }}">edit</a>
+                    <a href="{{ path('app_paciente_dashboard_edit', {'id': cita.id}) }}">Editar</a>
                     {% endif %}
                 </td>
             </tr>
@@ -40,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_paciente_dashboard_new') }}">Create new</a>
+    <a href="{{ path('app_paciente_dashboard_new') }}">Generar Cita</a>
 {% endblock %}

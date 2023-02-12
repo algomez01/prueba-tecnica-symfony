@@ -77,17 +77,6 @@ class PacienteDashboardController extends AbstractController
         ]);
     }
 
-    ///el show no es solicitado, asi que se puede ahorrar tiempo y no editarlo o incluso ocultarlo del template
-    /**
-     * @Route("/{id}", name="app_paciente_dashboard_show", methods={"GET"})
-     */
-    public function show(Citas $cita): Response
-    {
-        return $this->render('paciente_dashboard/show.html.twig', [
-            'cita' => $cita,
-        ]);
-    }
-
     /**
      * @Route("/{id}/edit", name="app_paciente_dashboard_edit", methods={"GET", "POST"})
      */

@@ -17,15 +17,6 @@ use Symfony\Component\Security\Core\Encoder\PasswordHasherEncoder;
  */
 class RegisterUserController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_register_user_index", methods={"GET"})
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        return $this->render('register_user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/new", name="app_register_user_new", methods={"GET", "POST"})
@@ -63,47 +54,4 @@ class RegisterUserController extends AbstractController
         ]);
     }
 
-    ///////el index, edit, y show se pueden eliminar porque no van a ser usados
-    
-    /**
-     * @Route("/{id}", name="app_register_user_show", methods={"GET"})
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('register_user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="app_register_user_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
-
-            return $this->redirectToRoute('app_register_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('register_user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="app_register_user_delete", methods={"POST"})
-     */
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-        }
-
-        return $this->redirectToRoute('app_register_user_index', [], Response::HTTP_SEE_OTHER);
-    }
 }

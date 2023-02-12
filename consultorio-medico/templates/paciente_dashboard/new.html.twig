@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Citas{% endblock %}
+{% block title %}Citas Paciente{% endblock %}
 
 {% block body %}
-    <h1>Create new Citas</h1>
+    <h1>Generar nueva cita</h1>
 
     {{ include('paciente_dashboard/_form.html.twig') }}
 
-    <a href="{{ path('app_paciente_dashboard_index') }}">back to list</a>
+    <a href="{{ path('app_paciente_dashboard_index') }}">Regresar</a>
 {% endblock %}

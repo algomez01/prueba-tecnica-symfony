@@ -34,7 +34,7 @@ class MedicoDashboardController extends AbstractController
         //generamos un nuevo metodo para mostrar los nombres del paciente en la consulta
 
         return $this->render('medico_dashboard/index.html.twig', [
-            'citas' => $repoCitas->getCitasEstado(Citas::ESTADO_ATENDIDA,$objUser->getId()),//solo muestra citas atendida por él
+            'citas' => $repoCitas->getCitasMedico($objUser->getId()),//solo muestra citas atendida por él
         ]);
     }
 
@@ -51,16 +51,6 @@ class MedicoDashboardController extends AbstractController
 
         return $this->render('medico_dashboard/citasPendientes.html.twig', [
             'citas' => $repoCitas->getCitasEstado(Citas::ESTADO_PENDIENTE),//solo muestra citas atendida por él
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="app_medico_dashboard_show", methods={"GET"})
-     */
-    public function show(Citas $cita): Response
-    {
-        return $this->render('medico_dashboard/show.html.twig', [
-            'cita' => $cita,
         ]);
     }
 

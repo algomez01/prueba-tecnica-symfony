@@ -58,8 +58,40 @@ class CitasRepository extends ServiceEntityRepository
         return $this->_em->createQuery($strSql)
             ->setParameter('paciente',$idUser)
             ->getResult();
+        
+    }
+
+    public function getCitasMedico($medico): ?array
+    {
+        //se hace un left join para obtner las citas aún cuando no tengan registrado un medicoId
+        $strSql = "SELECT citas.id,
+        citas.fe_creacion,
+        citas.motivo,
+        citas.estado,
+        tipoCita.descripcion descripcionTipoCita,
+        tipoCita.costo valorCita,
+        userMedico.nombres nombre_medico,
+        userMedico.apellidos apellido_medico,
+        userPaciente.nombres paci_nombres,
+        userPaciente.apellidos paci_apellidos
+                    FROM App\Entity\Citas citas
+                    JOIN App\Entity\User userPaciente
+                    WITH citas.pacienteId = userPaciente.id
+                    LEFT JOIN App\Entity\User userMedico
+                    WITH citas.medicoId = userMedico.id
+                    LEFT JOIN App\Entity\TiposCitas tipoCita
+                    WITH citas.tipoCitaId = tipoCita.id
+                    WHERE citas.medicoId = :medico"; //Where para filtrar los resultados
+
+        
+
+        $query = $this->_em->createQuery($strSql)
+        ->setParameter('medico',$medico);
+                
+        return $query->getResult();
         ;
     }
+
 
     public function getCitasEstado($estado,$medico = null): ?array
     {

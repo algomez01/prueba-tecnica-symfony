@@ -22,7 +22,7 @@
         {% for factura in facturas %}
             <tr>
                 <td>{{ factura.id }}</td>
-                <td>{{ factura.fecha_factura ? factura  .fecha_factura|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ factura.fecha_factura ? factura.fecha_factura|date('Y-m-d H:i:s') : '' }}</td>
                 <td>$ {{ factura.total }}</td>
                 <td>{{ factura.fecha_cita ? factura.fecha_cita|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ factura.descripcionTipoCita }}</td>
