@@ -23,7 +23,7 @@ class Citas
     private $paciente_id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fecha;
 

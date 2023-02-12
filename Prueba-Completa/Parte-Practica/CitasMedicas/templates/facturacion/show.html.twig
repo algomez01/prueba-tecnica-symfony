@@ -3,9 +3,18 @@
 {% block title %}Facturas{% endblock %}
 
 {% block body %}
+<body style="background-color:#C8C5CA;" >
+    <center>
+    <h1>Hola Facturador 🤑</h1>
+    </center>
+     <center>
     <h1>Facturas</h1>
-
-    <table class="table">
+    </center>
+    <div class="container bg-white">
+        <h1><b>CITAS:</b></h1>
+     <center>
+    <div class="container -secondary">
+    <table class="table table-secondary table-bordered" >
         <tbody>
             <tr>
                 <th>Id</th>
@@ -30,9 +39,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_facturacion_index') }}">back to list</a>
+    <a href="{{ path('app_facturacion_index') }}"class="btn btn-info" role="button">Regresar</a>
 
-    <a href="{{ path('app_facturacion_edit', {'id': factura.id}) }}">edit</a>
+    <a href="{{ path('app_facturacion_edit', {'id': factura.id}) }}"class="btn btn-primary" role="button">Editar</a>
 
     {{ include('facturacion/_delete_form.html.twig') }}
 {% endblock %}

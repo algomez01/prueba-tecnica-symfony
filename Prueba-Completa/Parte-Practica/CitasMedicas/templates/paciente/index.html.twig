@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PacienteController!{% endblock %}
+{% block title %}Hello Paciente{% endblock %}
 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-
-<div class="example-wrapper">
-    <h1>Hello Paciente{{ controller_name }}! ✅</h1>
-    <h2>Crear Citas </h2>
-<a href="{{ path('app_citas_index') }}">Crear Citas</a>
+ <body style="background-color:#C8C5CA;" 
+ <div class="container bn-secondary">
+    <h1>Hello Paciente  🙋 ✅</h1>
+         <center>
+    <div class="container -secondary">
+    <table class="table table-secondary table-bordered" >
+    <h2>Puedes crear citas aqui ⬇</h2>
+    </table>
+    </div>
+<a href="{{ path('app_citas_index') }}"class="btn btn-success" role="button">Crear Citas</a>
 </div>
 {% endblock %}

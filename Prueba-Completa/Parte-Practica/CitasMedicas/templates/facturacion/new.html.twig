@@ -3,9 +3,19 @@
 {% block title %}New Facturas{% endblock %}
 
 {% block body %}
-    <h1>Create new Facturas</h1>
+<body style="background-color:#C8C5CA;" >
+    <center>
+    <h1>Hola Facturador 🤑</h1>
+    </center>
+     <center>
+    <h1>Crea Nuevas Facturas</h1>
+    <div class="container bg-secondary">
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+    <div class="mb-3">
+      <label for="staticEmail" class="col-sm-2 col-form-label">
+<table>
 
     {{ include('facturacion/_form.html.twig') }}
 
-    <a href="{{ path('app_facturacion_index') }}">back to list</a>
+    <a href="{{ path('app_facturacion_index') }}"class="btn btn-info" role="button">Regresar</a>
 {% endblock %}

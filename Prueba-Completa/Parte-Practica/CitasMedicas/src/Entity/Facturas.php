@@ -28,7 +28,7 @@ class Facturas
     private $valor;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $fecha;
 

@@ -3,17 +3,22 @@
 {% block title %}Facturas index{% endblock %}
 
 {% block body %}
+ <body style="background-color:#C8C5CA;" >
+       <h1>Hola Facturador 🤑</h1>
+<center>
     <h1>Facturas index</h1>
-
-    <table class="table">
+</center>
+     <center>
+    <div class="container bn-secondary">
+    <table class="table table-success table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Cita_id</th>
+                <th>Numero de Factura</th>
+                <th>Identificador de Cita</th>
                 <th>Valor</th>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>actions</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -25,17 +30,18 @@
                 <td>{{ factura.fecha ? factura.fecha|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ factura.hora ? factura.hora|date('H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_facturacion_show', {'id': factura.id}) }}">show</a>
-                    <a href="{{ path('app_facturacion_edit', {'id': factura.id}) }}">edit</a>
+                    <a href="{{ path('app_facturacion_show', {'id': factura.id}) }}"class="btn btn-success" role="button">Ver</a>
+                    <a href="{{ path('app_facturacion_edit', {'id': factura.id}) }}"class="btn btn-primary" role="button">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">No existen facturas generadas</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_facturacion_new') }}">Create new</a>
+    <a href="{{ path('app_facturacion_new') }}"class="btn btn-success" role="button">Crear facturas</a>
+    <a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
 {% endblock %}
