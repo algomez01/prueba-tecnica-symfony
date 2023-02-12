@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Medicos index{% endblock %}
+{% block title %}Hola Mi Doc{% endblock %}
 
 {% block body %}
-    <h1>Medicos index</h1>
+ <body style="background-color:#C8C5CA;" >
 
-    <table class="table">
+    <center>
+    <h1>REVISION DE CITAS:</h1>
+    <h1>Por Realizar</h1>
+     </center>
+ <center>
+    <div class="container bn-secondary">
+    <table class="table table-success table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -25,17 +31,17 @@
                 <td>{{ medico.valor }}</td>
                 <td>{{ medico.citaId }}</td>
                 <td>
-                    <a href="{{ path('app_medicos_show', {'id': medico.id}) }}">show</a>
-                    <a href="{{ path('app_medicos_edit', {'id': medico.id}) }}">edit</a>
+                    <a href="{{ path('app_medicos_show', {'id': medico.id}) }}"class="btn btn-success" role="button">Ver</a>
+                    <a href="{{ path('app_medicos_edit', {'id': medico.id}) }}"class="btn btn-primary" role="button">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">No existen Citas por revisar</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_medicos_new') }}">Create new</a>
+    <center>
+<a href = "{{path('app_logout')}}" class="btn btn-danger" role="button">Cerrar Sesion</a>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editar Cursos{% endblock %}
+{% block title %}Editar Citas{% endblock %}
 
 {% block body %}
 <body style="background-color:#C8C5CA;" >
@@ -11,7 +11,7 @@
       <label for="staticEmail" class="col-sm-2 col-form-label">
 <table>
 
-    {{ include('citas/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('citas/_form.html.twig', {'button_label': 'Guardar'}) }}
 
     <a href="{{ path('app_citas_index') }}"lass="btn btn-info" role="button">Regresar</a>
 
