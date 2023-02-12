@@ -67,6 +67,43 @@ class FacturasRepository extends ServiceEntityRepository
         ;
     }
 
+    public function getFacturasFecha($fechaInicio = null, $fechaFin = null): ?array
+    {
+
+        $strSql = "SELECT fact.id,
+        fact.fe_creacion fecha_factura,
+        fact.total,
+        tipoCita.descripcion descripcionTipoCita,
+        CONCAT(CONCAT(userCajero.nombres,' '),userCajero.apellidos) nombres_cajero
+                    FROM App\Entity\Facturas fact
+                    JOIN App\Entity\User userCajero
+                    WITH fact.cajeroId = userCajero.id
+                    JOIN App\Entity\Citas cita
+                    WITH fact.citaId = cita.id
+                    JOIN App\Entity\TiposCitas tipoCita
+                    WITH cita.tipoCitaId = tipoCita.id";
+
+        //si le llegan las fechas, filtra
+        if($fechaInicio != null && $fechaFin != null){
+            $fechaInicio = new \DateTime($fechaInicio->format("Y-m-d")." 00:00:00");
+            $fechaFin = new \DateTime($fechaFin->format("Y-m-d")." 23:59:59");
+
+            $strCondicion = " AND fact.fe_creacion BETWEEN :fechaIni AND :fechaFin ";
+
+            $strSql .= $strCondicion;
+        }
+
+        $query = $this->_em->createQuery($strSql);
+
+        //si le llegan las fechas, setea parametros para filtrar
+        if($fechaInicio != null && $fechaFin != null){
+            $query->setParameter('fechaIni',$fechaInicio)
+                ->setParameter('fechaFin',$fechaFin);
+        }
+
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Facturas[] Returns an array of Facturas objects
 //     */
