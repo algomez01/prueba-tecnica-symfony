@@ -47,6 +47,12 @@ class Citas
      */
     private $medicoId;
 
+    ////Estado de las citas
+    const ESTADO_PENDIENTE = 'Pendiente';
+    const ESTADO_ATENDIDA = 'Atendida';
+    const ESTADO_FACTURADA = 'Facturada';
+
+
     public function getId(): ?int
     {
         return $this->id;

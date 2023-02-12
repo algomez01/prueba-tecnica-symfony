@@ -14,6 +14,19 @@
         {% endblock %}
     </head>
     <body>
+
+        <!-- Agregamos una alerta general para mostrar mensajes luego de la ejecución de procesos-->
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-info" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
+
+        <!-- Agregamos un botón general para cerrar la sesión solo si esta alguien logueado-->
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('app_logout') }}">Cerrar Sesión</a>
+        {% endif %}
     </body>
 </html>

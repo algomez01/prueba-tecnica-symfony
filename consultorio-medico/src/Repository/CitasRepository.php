@@ -39,20 +39,28 @@ class CitasRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Citas[] Returns an array of Citas objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getCitasUsuario($idUser): ?array
+    {
+        //se hace un left join para obtner las citas aún cuando no tengan registrado un medicoId
+        $strSql = "SELECT citas.id,
+        citas.fe_creacion,
+        citas.motivo,
+        citas.estado,
+        tipoCita.descripcion descripcionTipoCita,
+        userMedico.nombres nombre_medico,
+        userMedico.apellidos apellido_medico
+                    FROM App\Entity\Citas citas
+                    LEFT JOIN App\Entity\User userMedico
+                    WITH citas.medicoId = userMedico.id
+                    LEFT JOIN App\Entity\TiposCitas tipoCita
+                    WITH citas.tipoCitaId = tipoCita.id
+                    AND citas.pacienteId = :paciente";
+        return $this->_em->createQuery($strSql)
+            ->setParameter('paciente',$idUser)
+            ->getResult();
+        ;
+    }
+
 
 //    public function findOneBySomeField($value): ?Citas
 //    {
