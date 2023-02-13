@@ -2,11 +2,13 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
@@ -22,10 +24,12 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private UrlGeneratorInterface $urlGenerator;
+    private AuthorizationCheckerInterface  $auth;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, AuthorizationCheckerInterface $auth)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->auth = $auth;
     }
 
     public function authenticate(Request $request): Passport
@@ -49,24 +53,21 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        /* //Almacenar el usuario
+        //Almacenar el usuario
         $request->getSession()->set("user",$request->getSession()->get(Security::LAST_USERNAME));
 
         // Redireccionar al dashboard según el rol
         if($this->auth->isGranted(User::ROLE_ADMIN)){
-            return new RedirectResponse($this->urlGenerator->generate('app_admin_dashboard'));
-        }elseif($this->auth->isGranted(User::ROLE_CAJERO )){
-            return new RedirectResponse($this->urlGenerator->generate('app_cajero_dashboard'));
-        }elseif($this->auth->isGranted(User::ROLE_MEDICO)){
-            return new RedirectResponse($this->urlGenerator->generate('app_medico_dashboard_index'));
+            return new RedirectResponse($this->urlGenerator->generate('usuarios'));
         }elseif($this->auth->isGranted(User::ROLE_PACIENTE)){
-            return new RedirectResponse($this->urlGenerator->generate('app_paciente_dashboard_index')); */
+            return new RedirectResponse($this->urlGenerator->generate('usuarios')); 
+        }
 
         // For example:
         // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-    }
+}
 
     protected function getLoginUrl(Request $request): string
     {

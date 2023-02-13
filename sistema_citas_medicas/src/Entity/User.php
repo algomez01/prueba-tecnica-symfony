@@ -50,6 +50,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $tipoUsuario;
 
+    const ROLE_PACIENTE = 'ROLE_PACIENTE';
+    const ROLE_MEDICO = 'ROLE_MEDICO';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_CAJERO = 'ROLE_CAJERO';
+
+
+
     public function getId(): ?int
     {
         return $this->id;

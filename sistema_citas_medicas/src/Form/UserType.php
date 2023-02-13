@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -18,6 +19,16 @@ class UserType extends AbstractType
             ->add('email', EmailType::class)
             //->add('roles')
             ->add('password', PasswordType::class)
+            ->add('nombres')
+            ->add('apellidos')
+            ->add('tipoUsuario', ChoiceType::class, [
+                'choices' => [
+                    'Paciente' => 'Paciente',
+                    'Médico' => 'Medico',
+                    'Cajero' => 'Cajero',
+                    'Admin' => 'Admin',
+                ]
+            ])
             ->add('save', SubmitType::class, ['label' => 'Registrar'])  
         ;
     }
