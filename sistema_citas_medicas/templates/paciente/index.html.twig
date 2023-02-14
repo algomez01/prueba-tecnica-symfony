@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas index{% endblock %}
+
+{% block body %}
+    <h1>Citas index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha_creacion</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fechaCreacion ? cita.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.motivo }}</td>
+                <td>{{ cita.estado }}</td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_paciente_new') }}">Registrar nueva cita</a>
+    
+{% endblock %}

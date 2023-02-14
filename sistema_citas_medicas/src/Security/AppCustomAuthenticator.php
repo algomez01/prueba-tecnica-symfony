@@ -17,6 +17,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+
 class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
@@ -49,25 +50,21 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
-
-        //Almacenar el usuario
-        $request->getSession()->set("user",$request->getSession()->get(Security::LAST_USERNAME));
-
-        // Redireccionar al dashboard según el rol
-        if($this->auth->isGranted(User::ROLE_ADMIN)){
-            return new RedirectResponse($this->urlGenerator->generate('usuarios'));
-        }elseif($this->auth->isGranted(User::ROLE_PACIENTE)){
-            return new RedirectResponse($this->urlGenerator->generate('usuarios')); 
-        }
-
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         
+           /*  if($this->auth->isGranted(User::ROLE_ADMIN)){ */
+                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
+            /* } elseif($this->auth->isGranted(User::ROLE_CAJERO )){
+                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
+            }elseif($this->auth->isGranted(User::ROLE_MEDICO)){
+                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
+            }elseif($this->auth->isGranted(User::ROLE_PACIENTE)){
+                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
+
+            } */
+       
+        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-}
+    }
 
     protected function getLoginUrl(Request $request): string
     {
