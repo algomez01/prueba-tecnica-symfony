@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Citas{% endblock %}
+
+{% block body %}
+    <h1>Edit Citas</h1>
+
+    {{ include('paciente/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a href="{{ path('app_paciente_dashboard_index') }}">Regresar</a>
+
+    {{ include('paciente/delete.html.twig') }}
+{% endblock %}

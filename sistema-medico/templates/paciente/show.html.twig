@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas{% endblock %}
+
+{% block body %}
+    <h1>Citas</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="table-light">Id</th>
+                <td class="table-light">{{ cita.id }}</td>
+            </tr>
+            <tr>
+                <th class="table-light">Fecha creacion</th>
+                <td class="table-light">{{ cita.fe_creacion ? cita.fe_creacion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motivo</th>
+                <td class="table-light">{{ cita.motivo }}</td>
+            </tr>
+            <tr>
+                <th class="table-light">Estado</th>
+                <td class="table-light">{{ cita.estado }}</td>
+            </tr>
+            <tr>
+                <th class="table-light">Tipo Cita Id</th>
+                <td class="table-light">{{ cita.tipo_cita_id }}</td>
+            </tr>
+            <tr>
+                <th class="table-light">Medico</th>
+                <td class="table-light">{{ cita.medico_id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_paciente_dashboard_index') }}">Regresar</a>
+
+    <a href="{{ path('app_paciente_dashboard_edit', {'id': cita.id}) }}">edit</a>
+    <a href="{{ path('app_logout') }}"role="button">Cerrar sesión </a>
+
+   
+{% endblock %}
