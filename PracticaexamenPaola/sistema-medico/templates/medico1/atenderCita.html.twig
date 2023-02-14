@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas{% endblock %}
+
+{% block body %}
+    <h1>Atender Cita:</h1>
+
+    <form action="{{method}}">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ cita.id }}</td>
+                </tr>
+                <tr>
+                    <th>Fe_creacion</th>
+                    <td>{{ cita.fecha_creacion ? cita.fecha_creacion|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Motivo</th>
+                    <td>{{ cita.descripcion }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>{{ cita.estado }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo Cita</th>
+                    <td>
+                        <select name="tipoCita">
+                            {% for tipo in tiposCitas %}
+                                <option value="{{tipo.id}}">{{ tipo.descripcion }}</option>
+                            {% endfor %}
+                        <select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        
+   </form>
+
+    <a href="{{ path('app_medico_index') }}">Regresar</a>
+
+{% endblock %}

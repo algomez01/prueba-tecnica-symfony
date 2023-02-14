@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Crear nueva cita</h1>
+
+    {{ include('paciente/_form.html.twig') }}
+
+    <a class="btn btn-lg btn-primary" href="{{ path('app_paciente_index') }}">back to list</a>
+{% endblock %}

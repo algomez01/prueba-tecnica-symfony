@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas Paciente{% endblock %}
+
+{% block body %}
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Historial de Citas Pacientes</h1>
+
+    <table class="table">
+        <thead>
+            <tr bgcolor="FD8E77">
+                <th>Id</th>
+                <th>Fecha_creacion</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Tipo Cita</th>
+                <th>Medico</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fecha_creacion ? cita.fecha_creacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.descripcion}}</td>
+                <td>{{ cita.estado }}</td>
+                <td>{{ cita.descripcionTipoCita }}</td>
+                <td>{{ cita.nombres }} {{ cita.apellidos }}</td>
+                <td>
+                    {% if cita.estado == 'ENESPERA' %} <!--Solo si esta pendiente se puede editar el motivo -->
+                    <a href="{{ path('app_paciente_edit', {'id': cita.id}) }}">Editar</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-lg btn-primary" href="{{ path('app_paciente_new') }}">Generar Cita</a>
+{% endblock %}

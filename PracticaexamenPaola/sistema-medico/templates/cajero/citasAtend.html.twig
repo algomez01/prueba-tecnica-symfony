@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facturas - Cajero{% endblock %}
+
+{% block body %}
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Citas por Facturar</h1>
+
+<!--No se permite editar las citas ya atendidas por el médico-->
+    <table class="table">
+        <thead>
+            <tr  bgcolor="FD8E77">
+                <th>Id</th>
+                <th>Fecha creacion</th>
+                <th>Paciente</th>
+                 <th>Tipo de Cita</th>
+                <th>Médico</th>
+               
+                <th>Valor Cita</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fecha_creacion ? cita.fecha_creacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.nom_pacientes }} {{cita.apell_pacientes}}</td>
+                <td>{{ cita.descripcionTipoCita}}</td>
+                <td>{{ cita.nom_doctor }} {{cita.apellido_doctor}}</td>
+                
+                <td>$ {{ cita.valorCita}}</td>
+                <td>
+                  <a class="btn btn-lg btn-primary" href="{{path('app_cajero_facturar',{'id':cita.id})}}">Generar Factura</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a  class="btn btn-lg btn-primary" href="{{ path('app_cajero') }}">Regresar</a>
+{% endblock %}

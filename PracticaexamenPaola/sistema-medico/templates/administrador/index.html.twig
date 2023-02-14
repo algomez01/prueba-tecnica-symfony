@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administrador{% endblock %}
+
+{% block body %}
+<h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Facturas</h1>
+
+    <form action="{{path('app_administrador')}}" method="GET">
+        <label>Fecha Inicio</label>
+        <input type="text" id="fecha_inicio" name="fecha_inicio">
+        <label>Fecha Fin</label>
+        <input type="text" id="fecha_fin" name="fecha_fin">
+        <input type="submit" value="Filtrar">
+    <form>
+
+    <br>
+
+    <!--No se permite editar las facturas cerradas por el cajero-->
+    <table class="table">
+        <thead>
+            <tr  bgcolor="FD8E77">
+                <th>Id</th>
+                <th>Fecha Factura</th>
+                <th>Tipo de Cita</th>
+                <th>Cajero</th>
+                <th>Total Factura</th>
+            </tr>
+        </thead>
+        <tbody> 
+        {% for factura in facturas %}
+            <tr>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.fe_factura ? factura  .fe_factura|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ factura.descripcionTipoCita }}</td>
+                <td>{{ factura.nom_cajero }}</td>
+                <td>$ {{ factura.totalpagar }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

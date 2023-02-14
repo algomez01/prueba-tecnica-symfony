@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;"></h1>
+
+    {{ include('register_user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a class="btn btn-lg btn-primary" href="{{ path('app_register_user_index') }}">Regresar</a>
+
+    {{ include('register_user/_delete_form.html.twig') }}
+{% endblock %}

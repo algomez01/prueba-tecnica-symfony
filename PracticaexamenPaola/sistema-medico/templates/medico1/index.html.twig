@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas atendidas{% endblock %}
+
+{% block body %}
+    <h1>Historial de Citas Atendidas</h1>
+
+<!--No se permite editar las citas ya atendidas por el médico-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha Creacion</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Tipo Cita</th>
+                <th>Paciente</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fecha_creacion ? cita.fe_creacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.descripcion}}</td>
+                <td>{{ cita.estado }}</td>
+                <td>{{ cita.descripcionTipoCita }}</td>
+                <td>{{ cita.nom_pacientes }} {{cita.apell_pacientes}}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_medico_pendientes') }}">Atender citas</a>
+{% endblock %}

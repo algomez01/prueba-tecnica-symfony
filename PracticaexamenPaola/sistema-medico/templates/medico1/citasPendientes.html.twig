@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas pendientes{% endblock %}
+
+{% block body %}
+    <h1>Citas Pendientes</h1>
+
+<!--No se permite editar las citas ya atendidas por el médico-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha Creación</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Paciente</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fecha_creacion ? cita.fecha_creacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.descripcion}}</td>
+                <td>{{ cita.estado }}</td>
+                <td>{{ cita.apell_pacientes }} {{cita.nom_pacientes}}</td>
+                <td>
+                  <a href="{{path('app_medico_edit',{'id':cita.id})}}">Atender</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_medico_index') }}">Regresar</a>
+{% endblock %}

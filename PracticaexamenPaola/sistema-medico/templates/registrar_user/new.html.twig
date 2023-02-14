@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Crear nuevo usuario</h1>
+
+    {{ include('registrar_user/_form.html.twig') }}
+
+    <a class="btn btn-lg btn-primary" href="{{ path('app_login') }}">Regresar al login</a>
+{% endblock %}
