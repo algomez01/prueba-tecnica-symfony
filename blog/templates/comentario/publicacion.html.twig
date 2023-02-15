@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones index{% endblock %}
+
+{% block body %}
+    <h1>Publicaciones index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>User</th>
+                <th>Estado</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publicacione in publicaciones %}
+            <tr>
+                <td>{{ publicacione.id }}</td>
+                <td>{{ publicacione.titulo }}</td>
+                <td>{{ publicacione.descripcion }}</td>
+                <td>{{ publicacione.nombre }}</td>
+                <td>{{ publicacione.nombres }} {{ publicacione.apellidos}}</td>
+                 <td>{{ publicacione.estado }}</td>
+                <td>
+                    <a href="{{ path('app_comentario_new', {'id': publicacione.id}) }}">Comentar</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

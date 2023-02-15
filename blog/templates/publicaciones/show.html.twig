@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones{% endblock %}
+
+{% block body %}
+    <h1>Publicaciones</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publicacione.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ publicacione.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ publicacione.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Categoriaid</th>
+                <td>{{ publicacione.categoriaid }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ publicacione.userid }}</td>
+            </tr>
+             <tr>
+                <th>Estado</th>
+                <td>{{ publicacione.estado }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publicaciones_index') }}">back to list</a>
+
+    <a href="{{ path('app_publicaciones_edit', {'id': publicacione.id}) }}">edit</a>
+
+    {{ include('publicaciones/_delete_form.html.twig') }}
+{% endblock %}

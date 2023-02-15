@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categoria index{% endblock %}
+
+{% block body %}
+     <h1>Opciones del Administrador</h1>
+    <a href="{{ path('app_categoria_new') }}">Create nueva Categoria</a>
+    <br>
+    <a href="{{ path('app_registration_user_new') }}">Registrar Usuario</a>
+    <br>
+    <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+    <h1>Categoria index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorium in categorias %}
+            <tr>
+                <td>{{ categorium.id }}</td>
+                <td>{{ categorium.nombre }}</td>
+                <td>
+                    <a href="{{ path('app_categoria_show', {'id': categorium.id}) }}">show</a>
+                    <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
