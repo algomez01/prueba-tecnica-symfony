@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+<center>
+<h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Registro</h1>
+
+<div style="background-color: powderblue; height: 200px; width: 550px; text-align: center;">
+    <div class="mb-3">
+    {{ form_widget(form) }}
+    <button class="btn btn-lg btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

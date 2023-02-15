@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones {% endblock %}
+
+{% block body %}
+    <h1 id="myheading"
+    style="border-bottom:2px solid orangered;padding-bottom:5px;">Publicaciones</h1>
+
+    <table class="table">
+        <thead>
+            <tr bgcolor="FD8E77">
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripción</th>
+                <th>Nombre Categoría</th>
+                <th>Trabajador</th>
+                <th>Comentario</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publicacion in publicacions %}
+            <tr>
+            
+                <td>{{ publicacion.id }}</td>
+               
+                <td>{{ publicacion.Titulo}}</td>
+                <td>{{ publicacion.descripcion }}</td>
+                <td>{{ publicacion.nomCategoria }}</td>
+                <td>{{ publicacion.nombres }} {{ publicacion.apellidos }}</td>
+
+                <td>
+                    
+                    <a href="{{ path('app_comentario1_index', {'id': publicacion.id}) }}">Comentar</a>
+                   
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No se encontraron datos</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  <a class="btn btn-lg btn-primary" href="{{ path('app_trabajador_new') }}">Crear nueva publicación</a>
+  
+{% endblock %}

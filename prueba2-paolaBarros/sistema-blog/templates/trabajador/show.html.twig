@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicacion{% endblock %}
+
+{% block body %}
+    <h1>Publicacion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publicacion.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ publicacion.Titulo }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ publicacion.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>UserId</th>
+                <td>{{ publicacion.userId }}</td>
+            </tr>
+            <tr>
+                <th>CategoriaId</th>
+                <td>{{ publicacion.categoriaId }}</td>
+            </tr>
+            <tr>
+                <th>TrabajadorId</th>
+                <td>{{ publicacion.trabajadorId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_trabajador_index') }}">back to list</a>
+
+    <a href="{{ path('app_trabajador_edit', {'id': publicacion.id}) }}">edit</a>
+
+    {{ include('trabajador/_delete_form.html.twig') }}
+{% endblock %}
