@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+
+    <body style="background-color:#C8C5CA;" >
+        <div class="example-wrapper">
+            <center>
+            <h1>REGISTRO DE USUARIO 📋</h1>
+            </center>
+            <center>
+            <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+            <div class="mb-3">
+                <label for="staticEmail" class="col-sm-2 col-form-label">
+                     {{ include('register_user/_form.html.twig') }}
+                <br>
+                <a href = "{{path('app_register_user_index')}}" class="btn btn-danger" role="button">Cancelar</a>
+                <a href = "{{path('app_admin_dash_board')}}",  class="btn btn-danger" role="button">Regresar</a>
+                
+                <div>
+                </div>
+                </div>
+            </div>
+            </div>
+            </center>
+        </div>
+</body>
+
+{% endblock %}
