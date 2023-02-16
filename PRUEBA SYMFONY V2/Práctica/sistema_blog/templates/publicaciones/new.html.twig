@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Publicaciones{% endblock %}
+
+{% block body %}
+    <center><h1>Nueva publicación</h1>
+
+    {{ include('publicaciones/_form.html.twig') }}
+
+    <a href="{{ path('app_publicaciones_index') }}">back to list</a>
+{% endblock %}

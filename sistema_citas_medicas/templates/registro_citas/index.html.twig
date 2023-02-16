@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citas{% endblock %}
+
+{% block body %}
+    <h1><center>Citas existentes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha_creacion</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+                <th>Descripcion</th>
+                <th>Costos</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for cita in citas %}
+            <tr>
+                <td>{{ cita.id }}</td>
+                <td>{{ cita.fechaCreacion ? cita.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ cita.motivo }}</td>
+                <td>{{ cita.estado }}</td>
+                <td>{{ tipo_cita_id.descripcion }}</td> {#Aquí se intenta conectar con la clase tipo de Citas#}
+                <td>{{ tipo_cita_id.costos }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a 
+    type="button" 
+    class="btn btn-primary"  
+    href="{{ path('app_registro_citas_new') }}">
+    <center>
+    Registre una nueva cita
+    </a>
+    <p>
+    <a  
+    href="{{path('app_logout')}}">
+    <center>Cerrar Sesión
+    </a>
+{% endblock %}

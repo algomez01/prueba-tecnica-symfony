@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Factura{% endblock %}
+
+{% block body %}
+
+    <h1><center>CAJA</h1>
+    <p><center>Ingrese los datos para facturación</p>
+
+    {{ include('cajero/_form.html.twig') }}
+
+    <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+{% endblock %}

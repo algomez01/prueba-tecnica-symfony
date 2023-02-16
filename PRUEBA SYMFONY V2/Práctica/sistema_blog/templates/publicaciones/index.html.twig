@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones index{% endblock %}
+
+{% block body %}
+    <h1>Publicaciones</h1>
+    <p>
+    <h1>Registrar nuevos usuarios</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Categoria</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publicacione in publicaciones %}
+            <tr>
+                <td>{{ publicacione.id }}</td>
+                <td>{{ publicacione.titulo }}</td>
+                <td>{{ publicacione.descripcion }}</td>
+                <td>{{ publicacione.categoria }}</td>
+                <td>
+                   {#  <a href="{{ path('app_publicaciones_show', {'id': publicacione.id}) }}">show</a>
+                    <a href="{{ path('app_publicaciones_edit', {'id': publicacione.id}) }}">edit</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publicaciones_new') }}">Crear publicación</a>
+
+{% endblock %}

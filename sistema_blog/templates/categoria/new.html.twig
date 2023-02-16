@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categoria{% endblock %}
+
+{% block body %}
+    <center><h1>Ingrese nueva categoría</h1>
+
+    {{ include('categoria/_form.html.twig') }}
+
+    <a href="{{ path('app_publicaciones_bienvenida') }}">Regresar al Menú del administrador</a>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Factura{% endblock %}
+
+{% block body %}
+    <h1>Edit Factura</h1>
+
+    {{ include('cajero/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_cajero_index') }}">back to list</a>
+
+    {{ include('cajero/_delete_form.html.twig') }}
+{% endblock %}

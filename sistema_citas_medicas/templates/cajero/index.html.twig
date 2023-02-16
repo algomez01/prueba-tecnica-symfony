@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Factura{% endblock %}
+
+{% block body %}
+    <h1>Factura</h1>
+
+    <table class="table" width="100%" align="center"> 
+        <thead><center>
+            <tr>
+                <th>Id</th>
+                <th>Fecha_creacion</th>
+                <th>Total</th>
+                {# <th>CitaId</th>
+                <th>CadejoId</th> 
+                <th>actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for factura in facturas %}
+            <tr>
+                <td>{{ factura.id }}</td>
+                <td>{{ factura.fechaCreacion ? factura.fechaCreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ factura.total }}</td>
+                <td>{{ factura.citaId }}</td>
+                <td>{{ factura.cadejoId }}</td>
+                <td>
+                    <a href="{{ path('app_cajero_edit', {'id': factura.id}) }}">editar factura</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cajero_new') }}">Crear Factura</a>
+{% endblock %}

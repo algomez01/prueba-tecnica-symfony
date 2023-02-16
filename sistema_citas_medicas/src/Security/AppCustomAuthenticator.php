@@ -50,21 +50,29 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        
-           /*  if($this->auth->isGranted(User::ROLE_ADMIN)){ */
-                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
-            /* } elseif($this->auth->isGranted(User::ROLE_CAJERO )){
-                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
-            }elseif($this->auth->isGranted(User::ROLE_MEDICO)){
-                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
-            }elseif($this->auth->isGranted(User::ROLE_PACIENTE)){
-                return new RedirectResponse($this->urlGenerator->generate('app_paciente_index'));
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+            return new RedirectResponse($targetPath);
+        }
 
-            } */
-       
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-    }
+        //Almacenar el usuario
+        $request->getSession()->set("user",$request->getSession()->get(Security::LAST_USERNAME));
+
+        // Redireccionar al dashboard según el rol
+          if($this->auth->isGranted(User::ROLE_ADMIN)){
+            return new RedirectResponse($this->urlGenerator->generate('app_cajero_index'));
+        } elseif($this->auth->isGranted(User::ROLE_PACIENTE)){
+            return new RedirectResponse($this->urlGenerator->generate('app_registro_citas_index')); 
+        } elseif($this->auth->isGranted(User::ROLE_MEDICO)){
+            return new RedirectResponse($this->urlGenerator->generate('app_tipo_cita_new'));
+        } elseif($this->auth->isGranted(User::ROLE_CAJERO)){
+            return new RedirectResponse($this->urlGenerator->generate('app_cajero_index'));
+        } 
+
+        // For example:
+         #return new RedirectResponse($this->urlGenerator->generate('app_registro_citas_index'));
+        
+        Throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+}
 
     protected function getLoginUrl(Request $request): string
     {

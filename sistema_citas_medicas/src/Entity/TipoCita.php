@@ -26,6 +26,10 @@ class TipoCita
      * @ORM\Column(type="integer")
      */
     private $costo;
+    /**
+     * @ORM\Column(type="time")
+     */
+    private $minutos;
 
     public function getId(): ?int
     {
@@ -52,6 +56,18 @@ class TipoCita
     public function setCosto(int $costo): self
     {
         $this->costo = $costo;
+
+        return $this;
+    }
+
+    public function getMinutos(): ?\DateTime
+    {
+        return $this->minutos;
+    }
+
+    public function setMinutos(\DateTime $minutos): self
+    {
+        $this->minutos = $minutos;
 
         return $this;
     }

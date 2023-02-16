@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registre una nueva Cita{% endblock %}
+
+{% block body %}
+    <div style="border: 1px solid black; padding: 5px; margin: 5px; text-align: center;" id="header-div">
+    <h1><center>Registre una nueva Cita</h1>
+    <p>Sistema de citas médicas</p>
+    {% if arrayMenu is defined %}
+        {% for arrayMenuItem in arrayMenu %}
+            <a href="{{ path(arrayMenuItem) }}">{{ arrayMenuItem }}</a>
+        {% endfor %}
+    {% endif %}
+     {{ include('registro_citas/_form.html.twig') }}
+        
+    <a href="{{ path('app_registro_citas_index') }}">Ver citas existentes</a>
+</div>
+
+   
+{% endblock %}

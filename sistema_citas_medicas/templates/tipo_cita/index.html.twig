@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tipo Cita{% endblock %}
+
+{% block body %}
+    <h1><center>Tipo de Cita </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Costo</th>
+                {# <th>Minutos</th> #}
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipo_citum in tipo_citas %}
+            <tr>
+                <td>{{ tipo_citum.id }}</td>
+                <td>{{ tipo_citum.descripcion }}</td>
+                <td>{{ tipo_citum.costo }}</td>
+                {# <td>{{ tipo_citum.minutos}}</td> #}
+                <td><a href="{{path('app_tipo_cita_edit', {'id': tipo_citum.id}) }}">Editar</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_tipo_cita_new') }}">Ingrese nuevo tipo de cita</a>
+{% endblock %}
