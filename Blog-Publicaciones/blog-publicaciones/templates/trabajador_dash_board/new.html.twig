@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Publicaciones{% endblock %}
+
+{% block body %}
+    <h1>Create new Publicaciones</h1>
+    {{ include('trabajador_dash_board/_form.html.twig') }}
+
+    <a href="{{ path('app_trabajador_dash_board_index') }}">Regresar</a>
+{% endblock %}

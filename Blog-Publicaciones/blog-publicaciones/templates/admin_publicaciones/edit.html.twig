@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Publicaciones{% endblock %}
+
+{% block body %}
+    <h1>Edit Publicaciones</h1>
+
+    {{ include('admin_publicaciones/_form.html.twig', {'button_label': 'Guadar'}) }}
+
+    <a href="{{ path('app_admin_publicaciones_index') }}"class="btn btn-info" role="button">Regresar</a>
+
+    {{ include('admin_publicaciones/_delete_form.html.twig') }}
+{% endblock %}

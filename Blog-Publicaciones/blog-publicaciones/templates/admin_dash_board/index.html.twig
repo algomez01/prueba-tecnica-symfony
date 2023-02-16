@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+ <body style="background-color:#B0BBF7;" >
+<div class="example-wrapper">
+    <center>
+    <h1><b>Hola Admin Master</b></h1>
+    <h1>Tabla de Usuarios</h1>
+    <center>
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Fecha de creacion</th>
+                <th>Tipo de Usuario</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.nombres }}</td>
+                <td>{{ user.apellidos }}</td>
+                <td>{{ user.feCreacion ? user.feCreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.tipousuario }}</td>
+                <td>
+                    <a href="{{ path('app_admin_dash_board_show', {'id': user.id}) }}"class="btn btn-info" role="button">Ver</a>
+                    <a href="{{ path('app_admin_dash_board_edit', {'id': user.id}) }}"class="btn btn-primary" role="button">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">No existen Usuarios</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_dash_board_new') }}"class="btn btn-success" role="button">Crear Nuevo Usuario</a>
+
+    <a href = "{{ path('app_logout') }}" class="btn btn-danger" role="button">Cerrar sesión</a>
+    <a href="{{ path('app_admin_dash_board_primeravista') }}"class="btn btn-info" role="button">Regresar</a>
+{% endblock %}

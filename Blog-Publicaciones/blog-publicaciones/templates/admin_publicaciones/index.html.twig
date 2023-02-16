@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones index{% endblock %}
+
+{% block body %}
+<body style="background-color:#B0BBF7;" >
+<div class="example-wrapper">
+    <center>
+    <h1>Publicaciones </h1>
+    <center>
+    <div class="container-xxl" style="background-color:#E8E3F9;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Cuerpo</th>
+                <th>Categoria</th>
+                <th>Nombre de Trabajador</th>
+                <th>Apellido de Trabajador</th>
+                <th>Descripcion</th>
+                <th>Fecha de creacion</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publicacione in publicaciones %}
+            <tr>
+                <td>{{ publicacione.id }}</td>
+                <td>{{ publicacione.titulo }}</td>
+                <td>{{ publicacione.cuerpo }}</td>
+                <td>{{ publicacione.nomCategorias }}</td>
+                <td>{{ userTrabajador.nombres}}</td>
+                <td>{{ userTrabajador.apellidos  }}</td>
+                <td>{{ publicacione.descripcion }}</td>
+                <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_publicaciones_show', {'id': publicacione.id}) }}"class=" btn btn-info" role="button">Ver</a>
+                    <a href="{{ path('app_admin_publicaciones_edit', {'id': publicacione.id}) }}"class="btn btn-primary" role="button">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">No existen Publicaciones</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <a href = "{{ path('app_logout') }}" class="btn btn-danger" role="button">Cerrar sesión</a>
+    <a href="{{ path('app_admin_dash_board_primeravista') }}"class="btn btn-info" role="button">Regresar</a>
+{% endblock %}

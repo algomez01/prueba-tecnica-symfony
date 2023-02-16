@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+  <body style="background-color:#B0BBF7;" >
+<div class="example-wrapper">
+    <center>
+    <h1><b>Hola Admin Master</b></h1>
+    <h1>Editar Usuario</h1>
+    <center>
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+    <table class="table">
+      {{ include('admin_dash_board/_form.html.twig', {'button_label': 'Guadar'}) }}
+
+    <a href="{{ path('app_admin_dash_board_index') }}"class="btn btn-info" role="button">Regresar</a>
+
+    {{ include('admin_dash_board/_delete_form.html.twig') }}
+{% endblock %}

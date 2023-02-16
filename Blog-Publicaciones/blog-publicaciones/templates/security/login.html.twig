@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<body style="background-color:#B0BBF7;" >
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+    <center>
+    <div class="container p-2 my-2 border" style="background-color:#94D4F5;">
+        <div class="mb-3">
+            Has iniciado sesión como {{ app.user.userIdentifier }} 
+            <br>
+            <a href = "{{ path('app_logout') }}" class="btn btn-danger" role="button">Cerrar sesión</a>
+            </center>
+        </div>
+        </div>
+    {% endif %}
+
+    <br>
+    <center>
+    <h3 class="h3 mb-3 font-weight: 900"><b> INGRESE :</b></h3>
+    </center>
+    <center>
+     <div class="container p-3 my-3 border" style="background-color:#9797B3;">
+    <label for="inputEmail"><H3><b>Correo:</b></H3></label><br>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="name@example.com" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword"><H3><b>Contraseña:</b></H3></label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    
+   </div>
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+<center>
+<br>
+    <button class="btn btn-primary" type="submit">
+        Iniciar sesión
+    </button>
+    <a href = "{{path('app_register_user_new')}}" class="btn btn-success" role="button">Registrarse</a>
+    </center>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+ <body style="background-color:#B0BBF7;" >
+<div class="example-wrapper">
+    <center>
+    <h1><b>Hola Admin Master</b></h1>
+    <h2><b>¿Que deseas hacer ?</b></h2>
+    <center>
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
+    <a href="{{ path('app_admin_dash_board_index')}}"class="btn btn-info" role="button">Agregar Usuarios</a>
+    <a href="{{ path('app_admin_publicaciones_index') }}"class="btn btn-primary" role="button">Editar Publicaciones</a>
+    </div>          
+
+    <a href = "{{ path('app_logout') }}" class="btn btn-danger" role="button">Cerrar sesión</a>
+{% endblock %}

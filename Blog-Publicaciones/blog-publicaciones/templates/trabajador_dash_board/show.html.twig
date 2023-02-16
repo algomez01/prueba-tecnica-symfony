@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones{% endblock %}
+
+{% block body %}
+    <h1>Publicaciones</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publicacione.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ publicacione.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Cuerpo</th>
+                <td>{{ publicacione.cuerpo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de la Categoria</th>
+                <td>{{ publicacione.nomCategorias}}</td>
+            </tr>
+            <tr>
+                <th>Nombre del Trabajador</th>
+                <td>{{ userTrabajador.nombres}}</td>
+            </tr>
+            <tr>
+                <th>Fecha de creacion</th>
+                <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ publicacione.descripcion }}</td>
+            </tr>
+        </tbody>
+             {% if publicacionesUsuario is not empty %}
+             <h2>Otras publicaciones del mismo usuario:</h2>
+            <ul>
+             {% for publicacionUsuario in publicacionesUsuario %}
+            <li>{{ publicacionUsuario.titulo }}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+    </table>
+    <a href="{{ path('app_trabajador_dash_board_index') }}">Regresar</a>
+
+{% endblock %}
