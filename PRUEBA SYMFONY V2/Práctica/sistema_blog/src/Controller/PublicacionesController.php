@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Publicaciones;
 use App\Form\PublicacionesType;
 use App\Repository\PublicacionesRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,17 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PublicacionesController extends AbstractController
 {
-
-    /**
-     * @Route("/", name="app_publicaciones_bienvenida", methods={"GET"})
-     */
-    public function bienvenida(PublicacionesRepository $publicacionesRepository): Response
-    {
-        return $this->render('publicaciones/bienvenidaAdmin.html.twig', [
-            'publicaciones' => $publicacionesRepository->findAll(),
-        ]);
-    }
-
     /**
      * @Route("/", name="app_publicaciones_index", methods={"GET"})
      */
@@ -34,7 +24,22 @@ class PublicacionesController extends AbstractController
         return $this->render('publicaciones/index.html.twig', [
             'publicaciones' => $publicacionesRepository->findAll(),
         ]);
-    }
+    }  
+
+    //Controlador para mostrar la página de bienvenida y cuadro de opciones
+    /**
+     * @Route("/", name="app_publicaciones_bienvenida", methods={"GET"})
+     */
+   /*  public function bienvenida(PublicacionesRepository $publicacionesRepository, ManagerRegistry $doctrine): Response
+    {
+
+        //Se genera el método para mostrar la página de bienvenida
+        return $this->render('publicaciones/bienvenidaAdmin.html.twig', [
+            'publicaciones' => $publicacionesRepository->findAll(),
+        ]);
+    } */
+
+    
 
 
     /**
@@ -46,13 +51,15 @@ class PublicacionesController extends AbstractController
         $form = $this->createForm(PublicacionesType::class, $publicacione);
         $form->handleRequest($request);
 
+        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $publicacionesRepository->add($publicacione, true);
 
             return $this->redirectToRoute('app_publicaciones_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('publicaciones/BienvenidaAdmin.html.twig', [
+        return $this->renderForm('publicaciones/new.html.twig', [
             'publicacione' => $publicacione,
             'form' => $form,
         ]);

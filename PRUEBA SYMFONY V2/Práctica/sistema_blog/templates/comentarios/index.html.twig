@@ -3,28 +3,24 @@
 {% block title %}Comentarios index{% endblock %}
 
 {% block body %}
-    <h1>Comentarios index</h1>
+    <center><h1>Listado de comentarios</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>PublicacionId</th>
-                <th>UserId</th>
-                <th>actions</th>
+                <th>Comentario:</th>
+                
             </tr>
         </thead>
         <tbody>
         {% for comentario in comentarios %}
             <tr>
-                <td>{{ comentario.id }}</td>
-                <td>{{ comentario.PublicacionId }}</td>
-                <td>{{ comentario.UserId }}</td>
+                <td>{{ comentario.descripcion }}</td>
                 <td>
-                    <a href="{{ path('app_comentarios_show', {'id': comentario.id}) }}">show</a>
-                    <a href="{{ path('app_comentarios_edit', {'id': comentario.id}) }}">edit</a>
+                    {{ include('comentarios/_delete_form.html.twig') }}
                 </td>
             </tr>
+            
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
@@ -33,5 +29,37 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_comentarios_new') }}">Create new</a>
+    {# Listado de publicaciones #}
+
+     <center><h1>Listado de publicaciones</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Publicaciones:</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+         {# {% for publicacione in publicaciones %}
+            <tr>
+                <td>{{ publicacione.descripcion }}</td>
+                <td>
+                    {{ include('publicaciones/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}  
+        </tbody>
+    </table> #} 
+    
+
+{#     <a href="{{ path('app_comentarios_new') }}">Create new</a> #}
+        <p>
+        <a href="{{ path('app_logout') }}">Cerrar sesión</a>
 {% endblock %}
+    

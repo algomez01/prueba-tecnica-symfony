@@ -14,13 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegistroController extends AbstractController
 {
-    /**
-     * @Route("/registro", name="app_registro")
+     /**
+     * @Route("/", name="app_registro_index", methods={"GET"})
      */
-    public function index(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $encoder, ManagerRegistry $doctrine): Response
+    public function ver(UserRepository $userRepository): Response
+    {
+        return $this->render('registro/ver.html.twig', [
+            'verUsuario' => $userRepository->findAll(),
+        ]);
+    } 
+    
+    /**
+     * @Route("/registro", name="app_registro_new")
+     */
+    public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $encoder, ManagerRegistry $doctrine): Response
     {
         $user = new User();
-        $form = $this->createForm(UserType::class, $user); 
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         $role = User::ROLE_EXTERNOS; //inicializa con el rol de las personas externas
 
@@ -51,14 +61,5 @@ class RegistroController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/", name="app_ver", methods={"GET"})
-     */
-    /* public function ver(UserRepository $userRepository): Response
-    {
-        return $this->render('registro/ver.html.twig', [
-            'ver' => $userRepository->findAll(),
-        ]);
-    } */
 
 }

@@ -1,32 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Publicaciones index{% endblock %}
+{% block title %}ADMINISTRADOR{% endblock %}
 
 {% block body %}
-    <h1>Publicaciones</h1>
+    
+    {% if is_granted('ROLE_ADMIN') == true %}
+
+    <center>
+    <h1>MENÚ PRINCIPAL DE ADMINISTRADOR</h1>
     <p>
-    <h1>Registrar nuevos usuarios</h1>
+    <h2>¿Qué desea hacer?</h2>
+    </p>
+    <a href="{{ path('app_categoria_new') }}">Crear categoría</a>
+    <p>
+    <a href="{{ path('app_categoria_index') }}">Ver y Modificar categoría</a>
+    <p>
+    <a href="{{ path('app_registro_new') }}">Crear usuario</a>
+    <p>
+    <a href="{{ path('app_registro_index') }}">Ver usuarios creados</a>
+    <p>
+    <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+
+    {#Si no es Administrador se presenta la pantalla del trabajador#}
+    {% else %}
+    <center>
+    <h1>Publicaciones</h1>
+    <p>Estas son las publicaciones que se han realizado</p>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titulo</th>
                 <th>Descripcion</th>
                 <th>Categoria</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for publicacione in publicaciones %}
             <tr>
-                <td>{{ publicacione.id }}</td>
                 <td>{{ publicacione.titulo }}</td>
                 <td>{{ publicacione.descripcion }}</td>
                 <td>{{ publicacione.categoria }}</td>
                 <td>
-                   {#  <a href="{{ path('app_publicaciones_show', {'id': publicacione.id}) }}">show</a>
-                    <a href="{{ path('app_publicaciones_edit', {'id': publicacione.id}) }}">edit</a> #}
+                    <a href="{{ path('app_comentarios_new') }}">Comentar</a>
                 </td>
             </tr>
         {% else %}
@@ -38,5 +54,10 @@
     </table>
 
     <a href="{{ path('app_publicaciones_new') }}">Crear publicación</a>
+    <p>
+    <a href="{{ path('app_logout') }}">Cerrar sesión</a>
+    
+    {% endif %}
+    </center>
 
 {% endblock %}

@@ -58,13 +58,13 @@ class AppCustomAuthenticator extends AbstractLoginFormAuthenticator
 
         // Redireccionar al dashboard según el rol
           if($this->auth->isGranted(User::ROLE_ADMIN)){
-            return new RedirectResponse($this->urlGenerator->generate('app_publicaciones_bienvenida'));
+            return new RedirectResponse($this->urlGenerator->generate('app_publicaciones_index'));
         } elseif($this->auth->isGranted(User::ROLE_TRABAJADORES)){
-            return new RedirectResponse($this->urlGenerator->generate('app_comentarios_index')); 
+            return new RedirectResponse($this->urlGenerator->generate('app_publicaciones_index')); 
         } elseif($this->auth->isGranted(User::ROLE_SUPERVISORES)){
             return new RedirectResponse($this->urlGenerator->generate('app_comentarios_index'));
         } elseif($this->auth->isGranted(User::ROLE_EXTERNOS)){
-            return new RedirectResponse($this->urlGenerator->generate('app_comentarios_index'));
+            return new RedirectResponse($this->urlGenerator->generate('app_publicaciones_index'));
         } 
         
         // For example:

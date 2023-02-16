@@ -1,22 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listado de usuarios{% endblock %}
+{% block title %}Usuarios{% endblock %}
 
 {% block body %}
-    <h2>Lista de usuarios</h2>
+    <center><h1>Listado de Usuarios</h1>
 
     <table class="table">
-        <tbody>
+        <thead>
             <tr>
-                <th>Nombre</th>
-                <td>{{verRepository.nombre}}</td>
+                <th>Nombre</th> 
+                <th>Apellido</th>
+                <th>Telefono</th>
+
             </tr>
+        </thead>
+        <tbody>
+        <center>{% for userRepository in verUsuario %}
+           <center> <tr>
+                {# <td>{{ userRepository.id }}</td>  #}
+                <td>{{ userRepository.nombres }}</td>
+                <td>{{ userRepository.apellido }}</td> 
+                <td>{{ userRepository.telefono }}</td> 
+                <td>
+                    {# <a href="{{ path('app_registro_index', {'id': userRepository.id}) }}">Ver</a> #}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
-
-    {# <a href="{{ path('app_publicaciones_index') }}">back to list</a>
-
-    <a href="{{ path('app_publicaciones_edit', {'id': userRepository.id}) }}">editar</a>
-
-    {{ include('publicaciones/_delete_form.html.twig') }} #}
+    <a href="{{ path('app_publicaciones_index') }}">Regresar al Menú del administrador</a>
 {% endblock %}

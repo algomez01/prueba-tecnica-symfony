@@ -27,7 +27,6 @@ class UserType extends AbstractType
                     'Trabajadores' => 'Trabajadores',
                     'Supervisores' => 'Supervisores',
                     'Externo' => 'Externo',
-                    'Admin' => 'Admin',
                 ]
             ])
             ->add('Guardar', SubmitType::class, ['label' => 'Registrar Usuario'])  

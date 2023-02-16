@@ -8,15 +8,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                {# <th>Id</th> #}
                 <th>Descripcion</th>
                 <th>Editar categoría</th>
             </tr>
         </thead>
         <tbody>
-        {% for categorium in categorias %}
-            <tr>
-                <td>{{ categorium.id }}</td>
+        <center>{% for categorium in categorias %}
+           <center> <tr>
+                {# <td>{{ categorium.id }}</td> #}
                 <td>{{ categorium.Descripcion }}</td>
                 <td>
                     <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">editar</a>
@@ -29,5 +29,5 @@
         {% endfor %}
         </tbody>
     </table>
-    <a href="{{ path('app_publicaciones_bienvenida') }}">Regresar al Menú del administrador</a>
+    <a href="{{ path('app_publicaciones_index') }}">Regresar al Menú del administrador</a>
 {% endblock %}

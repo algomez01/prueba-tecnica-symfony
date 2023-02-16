@@ -13,6 +13,7 @@ class PublicacionesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        //Se crear choice para 
         $builder
             ->add('titulo')
             ->add('descripcion')
@@ -23,7 +24,7 @@ class PublicacionesType extends AbstractType
                     'Entretenimiento' => 'Entretenimiento',
                 ]
             ])
-            ->add('Guardar', SubmitType::class, ['label' => 'Publicar'])
+            #->add('Guardar', SubmitType::class, ['label' => 'Publicar'])
         ;
     }
 

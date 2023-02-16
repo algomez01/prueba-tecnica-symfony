@@ -14,7 +14,8 @@
         </div>
     {% endif %}
     <center>
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Bienvenido</h1>
+    <p>Ingrese al sistema</p>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
     <label for="inputPassword">Password</label>
@@ -41,7 +42,7 @@
     <p>
     <a  
     href="{{path('app_registro_externos')}}">
-    <center>Registrar nuevo usuario
+    <center>Registrarse
     </a>
 </form>
 {% endblock %}
