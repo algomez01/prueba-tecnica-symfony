@@ -6,6 +6,7 @@ use App\Entity\Publicaciones;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,14 +16,14 @@ class PublicacionesType extends AbstractType
     {
         //Se crear choice para 
         $builder
-            ->add('titulo')
-            ->add('descripcion')
+            ->add('titulo', TextType::class)
+            ->add('descripcion', TextType::class)
             ->add('categoria', ChoiceType::class, [
-                'choices' => [
-                    'Tecnología' => 'Tecnología',
-                    'Ciencias' => 'Ciencias',
-                    'Entretenimiento' => 'Entretenimiento',
-                ]
+                    'choices' => $options["arrayCategorias"], //array que se envia desde el controller
+                    'choice_value'=>'id', //arributo de la entidad
+                    'choice_label'=>'descripcion', //atributo de la entidad
+                    'label'=>'Categoria', //lo que se muestra en pantalla
+                    'mapped' => false //debido a que no hay relacion entre las entidades, enviamos bandera para que no se mapee
             ])
             #->add('Guardar', SubmitType::class, ['label' => 'Publicar'])
         ;
@@ -32,6 +33,7 @@ class PublicacionesType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Publicaciones::class,
+            'arrayCategorias' => array(), //se crea el array para enviarlo al form
         ]);
     }
 }
