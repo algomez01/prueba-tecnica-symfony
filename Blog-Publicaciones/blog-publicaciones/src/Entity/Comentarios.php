@@ -35,7 +35,8 @@ class Comentarios
     /**
      * @ORM\Column(type="datetime")
      */
-    private $fe_creacion;
+    private $fechacreacion;
+
 
     public function getId(): ?int
     {
@@ -78,14 +79,14 @@ class Comentarios
         return $this;
     }
 
-    public function getFeCreacion(): ?\DateTimeInterface
+    public function getFechaCreacion(): ?\DateTimeInterface
     {
-        return $this->fe_creacion;
+        return $this->fechacreacion;
     }
 
-    public function setFeCreacion(\DateTimeInterface $fe_creacion): self
+    public function setFechaCreacion(\DateTimeInterface $fechacreacion): self
     {
-        $this->fe_creacion = $fe_creacion;
+        $this->fechacreacion = $fechacreacion;
 
         return $this;
     }

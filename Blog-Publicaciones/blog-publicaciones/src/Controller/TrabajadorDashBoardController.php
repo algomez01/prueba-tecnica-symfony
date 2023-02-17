@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Comentarios;
 use App\Entity\Publicaciones;
 use App\Entity\User;
 use App\Form\CategoriasType;
+use App\Form\ComentariosType;
 use App\Form\PublicacionesType;
 use App\Repository\CategoriasRepository;
+use App\Repository\ComentariosRepository;
 use App\Repository\PublicacionesRepository;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -81,14 +84,23 @@ class TrabajadorDashBoardController extends AbstractController
     /**
      * @Route("/{id}", name="app_trabajador_dash_board_show", methods={"GET"})
      */
-    public function show(Publicaciones $publicacione,ManagerRegistry $doctrine, PublicacionesRepository $publicacionesRepository): Response
+    public function show(Publicaciones $publicacione,ManagerRegistry $doctrine, PublicacionesRepository $publicacionesRepository, UserRepository $userRepository, ComentariosRepository $comentariosRepository): Response
     {
+        $user = $this->getUser();
+        $trabajador = $userRepository->findOneBy(['id' => $user->getId()]);
+        $user = $userRepository->findOneBy(['id' => $user->getId()]);
         $trabajadorId = $publicacione->getTrabajadorId();
+        $publicacione->setTrabajadorId($trabajador->getId());
         $publicacionesUser = $publicacionesRepository->getPublicacionesUser($trabajadorId);
 
+        $comentarios = $comentariosRepository->getComentariosDePublicacion($publicacione->getId());
+
         return $this->render('trabajador_dash_board/show.html.twig', [
-            'publicacione' => $publicacione,
-            'publicacionesUser' => $publicacionesUser,
+        'publicacione' => $publicacione,
+        'publicacionesUser' => $publicacionesUser,
+        'userTrabajador' => $trabajador,
+        'user' => $user,
+        'comentarios' => $comentarios
         ]);
     }
     

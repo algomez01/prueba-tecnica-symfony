@@ -83,6 +83,32 @@ class PublicacionesRepository extends ServiceEntityRepository
 
     return $this->_em->createQuery($strSql)->getResult();
 }
+public function getPublicacionesConComentarios(): ?array
+{
+    $strSql = "SELECT publicacione.id,
+        publicacione.titulo,
+        publicacione.cuerpo,
+        publicacione.fechacreacion,
+        categorias.nomCategorias,
+        userTrabajador.nombres,
+        userTrabajador.apellidos,
+        publicacione.descripcion,
+        publicacione.trabajadorId,
+        comentarios.id AS comentarioId,
+        comentarios.body AS comentarioBody,
+        comentarios.userId AS comentarioUserId,
+        comentarios.fecreacion AS comentarioFecreacion
+        FROM App\Entity\Publicaciones publicacione
+        LEFT JOIN App\Entity\User userTrabajador
+        WITH publicacione.trabajadorId = userTrabajador.id
+        LEFT JOIN App\Entity\Categorias categorias
+        WITH publicacione.categoriaId = categorias.id
+        LEFT JOIN App\Entity\Comentarios comentarios
+        WITH comentarios.publicacionesId = publicacione.id";
+
+    return $this->_em->createQuery($strSql)->getResult();
+}
+
 
 
 

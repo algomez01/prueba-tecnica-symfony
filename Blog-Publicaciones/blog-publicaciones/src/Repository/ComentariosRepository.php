@@ -39,6 +39,24 @@ class ComentariosRepository extends ServiceEntityRepository
         }
     }
 
+    public function getComentariosDePublicacion(int $publicacionId): ?array
+{
+    $strSql = "SELECT comentarios.id,
+        comentarios.body,
+        comentarios.userId,
+        comentarios.fechacreacion,
+        publicacione.titulo AS publicacionTitulo
+        FROM App\Entity\Comentarios comentarios
+        JOIN App\Entity\Publicaciones publicacione
+        WITH comentarios.publicacionesId = publicacione.id
+        WHERE comentarios.publicacionesId = :publicacionId";
+
+    return $this->_em->createQuery($strSql)
+                     ->setParameter('publicacionId', $publicacionId)
+                     ->getResult();
+}
+
+
 //    /**
 //     * @return Comentarios[] Returns an array of Comentarios objects
 //     */

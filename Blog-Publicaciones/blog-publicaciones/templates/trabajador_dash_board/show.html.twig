@@ -3,48 +3,62 @@
 {% block title %}Publicaciones{% endblock %}
 
 {% block body %}
-    <h1>Publicaciones</h1>
+ <body style="background-color:#AECBF0;" >
+<div class="container p-3 my-3 border border-secondary" style="background-color:#FFFFFF;">
+    <h1> <b><i>Publicacion:</i></b></h1>
+    <center>
+    <h1><b>Titulo:</b></h1>
+    <td><b>{{ publicacione.titulo }}</b></td>
+</div>
+  <div class="container p-3 my-3 border border-secondary" style="background-color:#FFFFFF;">
+  <div class="row">
+    <div class="col">
+    <center>
+    <h4><b>Creado Por:</b></h4>
+    <td><b>{{userTrabajador.nombres}}</b></td>
+    </center>
+    <br>
+    <td>{{ publicacione.cuerpo }}</td>
+    <br>
+    <h><b>Descripcion:</b></h>
+    <br>
+    <td>{{ publicacione.descripcion }}</td>
+    <br>
+    <br>
+    <br>
+    <h><b>Fecha de creacion</b></h>
+    <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
+    </div>
+    <div class="col">
+     <h4><b>Comentarios:</b></h4>
+{% if comentarios %}
+<table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Autor</th>
+        <th>Comentario</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comentario in comentarios %}
+        <tr>
+          <td>{{ comentario.userId }}</td>
+          <td>{{ user.nombres }}</td>
+          <td>{{ comentario.body }}</td>
+          <td>{{ comentario.fechacreacion|date('Y-m-d H:i:s') }}</td>
+          </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ publicacione.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ publicacione.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Cuerpo</th>
-                <td>{{ publicacione.cuerpo }}</td>
-            </tr>
-            <tr>
-                <th>Nombre de la Categoria</th>
-                <td>{{ publicacione.nomCategorias}}</td>
-            </tr>
-            <tr>
-                <th>Nombre del Trabajador</th>
-                <td>{{ userTrabajador.nombres}}</td>
-            </tr>
-            <tr>
-                <th>Fecha de creacion</th>
-                <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ publicacione.descripcion }}</td>
-            </tr>
-        </tbody>
-             {% if publicacionesUsuario is not empty %}
-             <h2>Otras publicaciones del mismo usuario:</h2>
-            <ul>
-             {% for publicacionUsuario in publicacionesUsuario %}
-            <li>{{ publicacionUsuario.titulo }}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-    </table>
-    <a href="{{ path('app_trabajador_dash_board_index') }}">Regresar</a>
+     <a href = "{{path('app_comentarios_trabajador_new')}}" class="btn btn-dark" role="button">Comentar</a>
+    </div>
+  </div>
+  </div>
+    <center>
+    <a href="{{ path('app_trabajador_dash_board_index') }}"class="btn btn-primary" role="button">Regresar</a>
 
 {% endblock %}
