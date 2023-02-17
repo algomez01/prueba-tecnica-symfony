@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones index{% endblock %}
+
+{% block body %}
+    <h1>Publicaciones index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Cuerpo</th>
+                <th>CategoriaId</th>
+                <th>TrabajadorId</th>
+                <th>Descripcion</th>
+                <th>Fechacreacion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publicacione in publicaciones %}
+            <tr>
+                <td>{{ publicacione.id }}</td>
+                <td>{{ publicacione.titulo }}</td>
+                <td>{{ publicacione.cuerpo }}</td>
+                <td>{{ publicacione.categoriaId }}</td>
+                <td>{{ publicacione.trabajadorId }}</td>
+                <td>{{ publicacione.descripcion }}</td>
+                <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_supervisor_show', {'id': publicacione.id}) }}">show</a>
+                    <a href="{{ path('app_supervisor_edit', {'id': publicacione.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_supervisor_new') }}">Create new</a>
+{% endblock %}

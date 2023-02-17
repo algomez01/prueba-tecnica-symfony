@@ -62,7 +62,7 @@ class CategoriasController extends AbstractController
      */
     public function edit(Request $request, Categorias $categoria, CategoriasRepository $categoriasRepository): Response
     {
-        $form = $this->createForm(Categorias1Type::class, $categoria);
+        $form = $this->createForm(CategoriasType::class, $categoria);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

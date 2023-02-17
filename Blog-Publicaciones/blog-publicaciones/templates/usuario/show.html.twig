@@ -54,12 +54,11 @@
   </table>
 {% endif %}
 
-     <a href = "{{path('app_trabajador_dash_board_index')}}" class="btn btn-dark" role="button">Editar Comentarios</a>
+     <a href = "{{path('app_usuario_comentarios_new')}}" class="btn btn-dark" role="button">Comentar</a>
     </div>
   </div>
   </div>
     <center>
-    <a href="{{ path('app_admin_publicaciones_edit', {'id': publicacione.id}) }}"class="btn btn-warning" role="button">Editar Publicacion</a>
-    <a href="{{ path('app_admin_publicaciones_index') }}"class="btn btn-primary" role="button">Regresar</a>
+    <a href="{{ path('app_usuario_index') }}"class="btn btn-primary" role="button">Regresar</a>
 
 {% endblock %}

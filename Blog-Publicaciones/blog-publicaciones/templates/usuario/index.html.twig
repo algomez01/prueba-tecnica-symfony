@@ -6,9 +6,11 @@
 <body style="background-color:#B0BBF7;" >
 <div class="example-wrapper">
     <center>
-    <h1>Publicaciones </h1>
+    <h1><b>Hola Trabajador</b></h1>
+    <h1>Publicaciones</h1>
     <center>
-    <div class="container-xxl" style="background-color:#E8E3F9;">
+    <center>
+    <div class="container p-3 my-3 border" style="background-color:#E8E3F9;">
     <table class="table">
         <thead>
             <tr>
@@ -18,8 +20,8 @@
                 <th>Categoria</th>
                 <th>Nombre de Trabajador</th>
                 <th>Apellido de Trabajador</th>
+                <th>Fecha deCreacion</th>
                 <th>Descripcion</th>
-                <th>Fecha de creacion</th>
                 <th>Opciones</th>
             </tr>
         </thead>
@@ -30,13 +32,14 @@
                 <td>{{ publicacione.titulo }}</td>
                 <td>{{ publicacione.cuerpo }}</td>
                 <td>{{ publicacione.nomCategorias }}</td>
-                <td>{{ userTrabajador.nombres}}</td>
                 <td>{{ userTrabajador.apellidos  }}</td>
-                <td>{{ publicacione.descripcion }}</td>
+                <td>{{ userTrabajador.nombres}}</td>
                 <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ publicacione.descripcion }}</td>
                 <td>
-                    <a href="{{ path('app_admin_publicaciones_show', {'id': publicacione.id}) }}"class=" btn btn-info" role="button">Ver</a>
+                <a href="{{ path('app_usuario_show', {'id': publicacione.id}) }}"class="btn btn-secondary" role="button">Ver</a>
                 </td>
+                
             </tr>
         {% else %}
             <tr>
@@ -46,6 +49,5 @@
         </tbody>
     </table>
 
-        <a href = "{{ path('app_logout') }}" class="btn btn-danger" role="button">Cerrar sesión</a>
-    <a href="{{ path('app_admin_dash_board_primeravista') }}"class="btn btn-info" role="button">Regresar</a>
+      <a href = "{{ path('app_logout') }}" class="btn btn-danger" role="button">Cerrar sesión</a>
 {% endblock %}

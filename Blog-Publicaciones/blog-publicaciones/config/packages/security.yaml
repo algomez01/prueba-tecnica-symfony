@@ -14,7 +14,7 @@ security:
         ROLE_USUARIO:    ROLE_USER
         ROLE_TRABAJADOR:      ROLE_USER
         ROLE_SUPERVISOR:      ROLE_USER
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       ROLE_ADMIN
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     firewalls:

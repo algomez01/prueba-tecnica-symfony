@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Comentarios{% endblock %}
+{% block body %}
+<body style="background-color:#AECBF0;" >
+<div class="container p-3 my-3 border border-secondary" style="background-color:#FFFFFF;">
+<center>
+    <h1>Nuevo Comentario</h1>
+
+<div class="container p-3 my-3 border border-secondary" style="background-color:#B8D5CC;">
+    {{ form_start(form) }}
+        {{ form_row(form.publicacion) }}
+
+        {# Agregar campo de texto deshabilitado para el título de la publicación #}
+        {{ form_row(form.publicacion_titulo) }}
+
+        {{ form_row(form.body) }}
+
+        <button type="submit">Guardar</button>
+    {{ form_end(form) }}
+</div>
+<center>
+    <a href="{{ path('app_usuario_index') }}"class="btn btn-primary" role="button">Regresar</a>
+    <script>
+        // Obtener elementos de la vista
+        const publicacionSelect = document.getElementById('comentarios_publicacion');
+        const publicacionTituloInput = document.getElementById('comentarios_publicacion_titulo');
+
+        // Establecer valor inicial
+        if (publicacionSelect.value !== '') {
+            publicacionTituloInput.value = publicacionSelect.options[publicacionSelect.selectedIndex].text;
+        }
+
+        // Agregar evento de cambio al campo de selección
+        publicacionSelect.addEventListener('change', () => {
+            publicacionTituloInput.value = publicacionSelect.options[publicacionSelect.selectedIndex].text;
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publicaciones{% endblock %}
+
+{% block body %}
+    <h1>Publicaciones</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publicacione.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ publicacione.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Cuerpo</th>
+                <td>{{ publicacione.cuerpo }}</td>
+            </tr>
+            <tr>
+                <th>CategoriaId</th>
+                <td>{{ publicacione.categoriaId }}</td>
+            </tr>
+            <tr>
+                <th>TrabajadorId</th>
+                <td>{{ publicacione.trabajadorId }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ publicacione.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Fechacreacion</th>
+                <td>{{ publicacione.fechacreacion ? publicacione.fechacreacion|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_supervisor_index') }}">back to list</a>
+
+    <a href="{{ path('app_supervisor_edit', {'id': publicacione.id}) }}">edit</a>
+
+    {{ include('supervisor/_delete_form.html.twig') }}
+{% endblock %}
